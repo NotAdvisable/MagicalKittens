@@ -9,18 +9,21 @@ public class CustomLobbyManager : NetworkLobbyManager {
     public override GameObject OnLobbyServerCreateLobbyPlayer(NetworkConnection conn, short playerControllerId) {
         if (!currentPlayers.ContainsKey(conn.connectionId))
             currentPlayers.Add(conn.connectionId, 0);
-        SetPlayerTypeLobby(conn, currentPlayers.Count-1);
         return OnLobbyServerCreateGamePlayer(conn,playerControllerId);
    
       //  return base.OnLobbyServerCreateLobbyPlayer(conn, playerControllerId);
     }
     public void SetPlayerTypeLobby(NetworkConnection conn, int _type) {
+        
         if (currentPlayers.ContainsKey(conn.connectionId))
             currentPlayers[conn.connectionId] = _type;
+        Debug.Log("set");
     }
 
     public override GameObject OnLobbyServerCreateGamePlayer(NetworkConnection conn, short playerControllerId) {
         int index = currentPlayers[conn.connectionId];
+        Debug.Log("creating cat number " + index);
+        Debug.Log("created");
         Transform transTemp = startPositions[conn.connectionId];
         /*
         GameObject _temp = Instantiate(spawnPrefabs[index],
@@ -36,4 +39,5 @@ public class CustomLobbyManager : NetworkLobbyManager {
         Debug.Log("READY");
         ServerChangeScene(playScene);
     }
+
 }

@@ -23,13 +23,20 @@ public class CustomHUD : MonoBehaviour {
     private GameObject _currentView;
     private PlayerPrefs prefs;
     private short _currentCharacterID;
+    private CatController _localCat;
+    private string _playerName;
+
 
     void Start () {
-        if (_serverAdressInputField != null) _serverAdressInputField.text = NetworkManager.singleton.networkAddress;
+      if (_serverAdressInputField != null) _serverAdressInputField.text = NetworkManager.singleton.networkAddress;
         _currentCanvas = _canvases[0];
         _currentView = _views[0];
         SwitchCharacterTo(0);
+
+        _playerName = "";
 	}
+
+
     public void SwitchCharacterTo(int i) {
         _currentCharacterID = (short) i;
         _protoRenderer.material = _materials[i];
@@ -50,15 +57,22 @@ public class CustomHUD : MonoBehaviour {
     public void EditServerAdress(string s) {
         NetworkManager.singleton.networkAddress = s;
     }
+    public void EditNetworkName(string name) {
+        _playerName = name;
+    }
+    public void SetLocalCat(CatController cat) {
+        _localCat = cat;
+    }
 
-    public void SetReady() {
-        ClientScene.Ready(NetworkManager.singleton.client.connection);
-        if (ClientScene.localPlayers.Count == 0) {
-            ClientScene.AddPlayer(0);
-        }
+    public void SetReady(bool value) {
+        _localCat.Dancing(value);
+        _localCat.GetComponent<NetworkLobbyPlayer>().SendReadyToBeginMessage();
+        //ClientScene.Ready(NetworkManager.singleton.client.connection);
+        //if (ClientScene.localPlayers.Count == 0) {
+        //    ClientScene.AddPlayer(0);
+        //}
     }
     public void UIStartHost() {
-        Debug.Log(Network.connections.Length);
         if (!NetworkServer.active)
             NetworkManager.singleton.StartHost();
     }
@@ -74,5 +88,13 @@ public class CustomHUD : MonoBehaviour {
     public void Exit() {
         Application.Quit();
     }
-
+    public short ReturnCharacterID() {
+        return _currentCharacterID;
+    }
+    public string ReturnPlayerName() {
+        if (_playerName == "") {
+            _playerName = _defaultNames[_currentCharacterID];
+        }
+        return _playerName;
+    }
 }
