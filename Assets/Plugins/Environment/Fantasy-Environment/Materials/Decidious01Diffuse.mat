@@ -65,7 +65,9 @@ Material:
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _EmissionScaleUI: 0
+    - _GlossMapScale: 1
     - _Glossiness: 0
+    - _GlossyReflections: 1
     - _Metallic: 0
     - _Mode: 1
     - _OcclusionStrength: 1
@@ -74,6 +76,8 @@ Material:
     - _ShakeDisplacement: 0.168
     - _ShakeTime: 0.187
     - _ShakeWindspeed: 0.131
+    - _SmoothnessTextureChannel: 0
+    - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _UVSec: 0
     - _ZWrite: 1

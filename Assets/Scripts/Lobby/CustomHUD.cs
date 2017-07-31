@@ -65,7 +65,7 @@ public class CustomHUD : MonoBehaviour {
     }
 
     public void SetReady(bool value) {
-        _localCat.Dancing(value);
+      //  _localCat.Dancing(value);
         _localCat.GetComponent<NetworkLobbyPlayer>().SendReadyToBeginMessage();
         //ClientScene.Ready(NetworkManager.singleton.client.connection);
         //if (ClientScene.localPlayers.Count == 0) {
