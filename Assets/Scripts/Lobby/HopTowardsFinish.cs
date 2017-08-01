@@ -6,7 +6,7 @@ public class HopTowardsFinish : MonoBehaviour {
 
     private Transform _finish;
     private Vector3 _actualGoal;
-    private float _hopSpeed;
+    public float _hopSpeed;
     private Vector2 _minMaxWait = new Vector2(0f, 2.5f);
 
     void Start () {
@@ -15,7 +15,7 @@ public class HopTowardsFinish : MonoBehaviour {
 
         transform.LookAt(_actualGoal);
 
-        _hopSpeed = Random.Range(.07f, .14f);
+        _hopSpeed = Random.Range(3f, 5f);
         StartCoroutine(HopTowardsDoom());
     }
 	
@@ -23,7 +23,7 @@ public class HopTowardsFinish : MonoBehaviour {
         yield return new WaitForSeconds(Random.Range(_minMaxWait.x, _minMaxWait.y));
         GetComponent<Animator>().SetBool("Hop", true);
         while (Vector3.Distance(transform.position, _actualGoal) > .1f) {
-            transform.position = Vector3.MoveTowards(transform.position, _actualGoal, _hopSpeed);
+            transform.position = Vector3.MoveTowards(transform.position, _actualGoal, _hopSpeed * Time.deltaTime);
             yield return null;
         }
         Destroy(gameObject);

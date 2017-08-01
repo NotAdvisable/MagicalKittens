@@ -43,7 +43,7 @@ namespace MirzaBeig
                 public float force = 1.0f;
                 public float speed = 1.0f;
 
-                new ParticleSystem particleSystem;
+                ParticleSystem particleSystem;
 
                 //Vector3 particleSystemPosition;
 

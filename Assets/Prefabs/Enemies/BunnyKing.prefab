@@ -233,6 +233,11 @@ GameObject:
   m_Component:
   - component: {fileID: 4533624597205554}
   - component: {fileID: 95855325231412456}
+  - component: {fileID: 135657430227408276}
+  - component: {fileID: 114593423877071720}
+  - component: {fileID: 114240783168884400}
+  - component: {fileID: 114743551166119504}
+  - component: {fileID: 114560402062840060}
   m_Layer: 0
   m_Name: BunnyKing
   m_TagString: Untagged
@@ -576,8 +581,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1539434665222018}
-  m_LocalRotation: {x: -0, y: -0.66276133, z: -0, w: 0.74883074}
-  m_LocalPosition: {x: 294.90073, y: 165.06145, z: -265.3953}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 24, y: 24, z: 24}
   m_Children:
   - {fileID: 4697543748821374}
@@ -595,7 +600,7 @@ Transform:
   - {fileID: 4142163526791604}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -83.022, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4544361281540036
 Transform:
   m_ObjectHideFlags: 1
@@ -644,7 +649,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1239213081368440}
   m_LocalRotation: {x: 0.00000008146034, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.000000011018477}
+  m_LocalPosition: {x: 0.044, y: 0, z: -0.351}
   m_LocalScale: {x: 1.17415, y: 1.17415, z: 1.17415}
   m_Children: []
   m_Father: {fileID: 4533624597205554}
@@ -824,6 +829,102 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114240783168884400
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1539434665222018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1590678366, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Animator: {fileID: 95855325231412456}
+  m_ParameterSendBits: 15
+  param0: 
+  param1: 
+  param2: 
+  param3: 
+  param4: 
+  param5: 
+--- !u!114 &114560402062840060
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1539434665222018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 201
+    i1: 66
+    i2: 125
+    i3: 209
+    i4: 98
+    i5: 144
+    i6: 20
+    i7: 196
+    i8: 234
+    i9: 110
+    i10: 145
+    i11: 139
+    i12: 38
+    i13: 216
+    i14: 181
+    i15: 127
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
+--- !u!114 &114593423877071720
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1539434665222018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7df094ee5bdc08443965546d3c05c47a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _landingEffect: {fileID: 0}
+--- !u!114 &114743551166119504
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1539434665222018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1768714887, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TransformSyncMode: 1
+  m_SendInterval: 0.1
+  m_SyncRotationAxis: 7
+  m_RotationSyncCompression: 0
+  m_SyncSpin: 0
+  m_MovementTheshold: 0.001
+  m_VelocityThreshold: 0.0001
+  m_SnapThreshold: 5
+  m_InterpolateRotation: 8
+  m_InterpolateMovement: 5
+--- !u!135 &135657430227408276
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1539434665222018}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.29
+  m_Center: {x: 0, y: 0.24, z: 0}
 --- !u!137 &137833977210653642
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

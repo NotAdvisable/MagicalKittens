@@ -9,35 +9,42 @@ public class CustomLobbyManager : NetworkLobbyManager {
     public override GameObject OnLobbyServerCreateLobbyPlayer(NetworkConnection conn, short playerControllerId) {
         if (!currentPlayers.ContainsKey(conn.connectionId))
             currentPlayers.Add(conn.connectionId, 0);
-        return OnLobbyServerCreateGamePlayer(conn,playerControllerId);
-   
-      //  return base.OnLobbyServerCreateLobbyPlayer(conn, playerControllerId);
+
+        return CreatePlayer(conn.connectionId);
+
+        //  return base.OnLobbyServerCreateLobbyPlayer(conn, playerControllerId);
     }
     public void SetPlayerTypeLobby(NetworkConnection conn, int _type) {
-        
+
         if (currentPlayers.ContainsKey(conn.connectionId))
             currentPlayers[conn.connectionId] = _type;
         Debug.Log("set");
     }
 
     public override GameObject OnLobbyServerCreateGamePlayer(NetworkConnection conn, short playerControllerId) {
-        int index = currentPlayers[conn.connectionId];
-        Debug.Log("creating cat number " + index);
-        Debug.Log("created");
-        Transform transTemp = startPositions[conn.connectionId];
-        /*
-        GameObject _temp = Instantiate(spawnPrefabs[index],
-            startPositions[conn.connectionId].position,
-            Quaternion.identity);
-        
-        NetworkServer.AddPlayerForConnection(conn, _temp, playerControllerId);
-        */
-        return Instantiate(spawnPrefabs[index], transTemp.position, transTemp.rotation);
-    }
-    public override void OnLobbyServerPlayersReady() {
-        base.OnLobbyServerPlayersReady();
-        Debug.Log("READY");
-        ServerChangeScene(playScene);
+        // NetworkServer.AddPlayerForConnection(conn, _temp, playerControllerId);
+
+        return CreatePlayer(conn.connectionId);
     }
 
+    public override bool OnLobbyServerSceneLoadedForPlayer(GameObject lobbyPlayer, GameObject gamePlayer) {
+        NetworkState.Singleton.CmdTryKillPlayer(lobbyPlayer);
+        return base.OnLobbyServerSceneLoadedForPlayer(lobbyPlayer, gamePlayer);
+        
+    }
+
+    private GameObject CreatePlayer(int id) {
+        int index = currentPlayers[id];
+
+        Debug.Log("creating cat number " + index);
+        Debug.Log("created");
+
+       Transform transTemp = startPositions[id];
+        Debug.Log("created player for connectionID " + id);
+        GameObject temp = Instantiate(spawnPrefabs[index], transTemp.position, transTemp.rotation);
+
+        NetworkState.Singleton.TryAddPlayer(temp);
+
+        return temp;
+    }
 }

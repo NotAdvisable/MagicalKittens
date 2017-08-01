@@ -1819,6 +1819,79 @@ RectTransform:
   m_PrefabParentObject: {fileID: 224939050057202642, guid: e9df7cdff175c024982312fd99284e83,
     type: 2}
   m_PrefabInternal: {fileID: 353532907}
+--- !u!1 &495009150
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 495009152}
+  - component: {fileID: 495009151}
+  - component: {fileID: 495009153}
+  m_Layer: 0
+  m_Name: NetworkStateManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &495009151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 495009150}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d6090e9ca379ab48801d0cb639d7762, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &495009152
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 495009150}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 15
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &495009153
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 495009150}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 0
+    i1: 0
+    i2: 0
+    i3: 0
+    i4: 0
+    i5: 0
+    i6: 0
+    i7: 0
+    i8: 0
+    i9: 0
+    i10: 0
+    i11: 0
+    i12: 0
+    i13: 0
+    i14: 0
+    i15: 0
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
 --- !u!1001 &501560707
 Prefab:
   m_ObjectHideFlags: 0
@@ -3663,6 +3736,14 @@ Prefab:
     - target: {fileID: 116598, guid: a35d98c4ec637a641a76b3c32b3a029c, type: 2}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 13607928, guid: a35d98c4ec637a641a76b3c32b3a029c, type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 13607928, guid: a35d98c4ec637a641a76b3c32b3a029c, type: 2}
+      propertyPath: m_Height
+      value: 2.01
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a35d98c4ec637a641a76b3c32b3a029c, type: 2}
@@ -6150,9 +6231,9 @@ MonoBehaviour:
   m_OnlineScene: 
   m_SpawnPrefabs:
   - {fileID: 1051119475947838, guid: 7728c8737154fd54094e8b9cce441d22, type: 2}
-  - {fileID: 1988991560378884, guid: 6dbca76edc0c5f74eb7559f18ebc5131, type: 2}
-  - {fileID: 1598092328114900, guid: 628901b6c896ed042848a8ebc92185a1, type: 2}
-  - {fileID: 1127145461543236, guid: 7a97480bf355aef4395866031c3a51a6, type: 2}
+  - {fileID: 1723546811470360, guid: 7a97480bf355aef4395866031c3a51a6, type: 2}
+  - {fileID: 1298774768144864, guid: 6dbca76edc0c5f74eb7559f18ebc5131, type: 2}
+  - {fileID: 1940568349587074, guid: 628901b6c896ed042848a8ebc92185a1, type: 2}
   m_CustomConfig: 0
   m_MaxConnections: 4
   m_ConnectionConfig:
@@ -6210,12 +6291,10 @@ MonoBehaviour:
   matchMaker: {fileID: 0}
   m_ShowLobbyGUI: 0
   m_MaxPlayers: 4
-  m_MaxPlayersPerConnection: 4
+  m_MaxPlayersPerConnection: 1
   m_MinPlayers: 0
-  m_LobbyPlayerPrefab: {fileID: 114726811421426394, guid: 7728c8737154fd54094e8b9cce441d22,
-    type: 2}
-  m_GamePlayerPrefab: {fileID: 1051119475947838, guid: 7728c8737154fd54094e8b9cce441d22,
-    type: 2}
+  m_LobbyPlayerPrefab: {fileID: 0}
+  m_GamePlayerPrefab: {fileID: 0}
   m_LobbyScene: Lobby
   m_PlayScene: Level0
   lobbySlots: []

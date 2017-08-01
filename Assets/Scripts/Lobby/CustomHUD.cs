@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Networking;
+using System.Linq;
+
 
 public class CustomHUD : MonoBehaviour {
 
@@ -63,22 +65,26 @@ public class CustomHUD : MonoBehaviour {
     public void SetLocalCat(CatController cat) {
         _localCat = cat;
     }
+    private void FindLocalCat() {
+
+        var player = NetworkState.Singleton.GetCurrentPlayers().FirstOrDefault(cat => cat.isLocalPlayer);
+        if (player != null) _localCat = player;
+    }
 
     public void SetReady(bool value) {
-      //  _localCat.Dancing(value);
+        //FindLocalCat();
+        _localCat.Dancing(value);
         _localCat.GetComponent<NetworkLobbyPlayer>().SendReadyToBeginMessage();
-        //ClientScene.Ready(NetworkManager.singleton.client.connection);
-        //if (ClientScene.localPlayers.Count == 0) {
-        //    ClientScene.AddPlayer(0);
-        //}
     }
     public void UIStartHost() {
-        if (!NetworkServer.active)
+        if (!NetworkServer.active) {
             NetworkManager.singleton.StartHost();
+        }
     }
     public void UIStartClient() {
-        if (!NetworkClient.active)
+        if (!NetworkClient.active) {
             NetworkManager.singleton.StartClient();
+        }
     }
     public void UIStop() {
         if (NetworkServer.active || NetworkClient.active) {
