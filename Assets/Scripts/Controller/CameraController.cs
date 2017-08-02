@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 using System;
@@ -11,6 +10,11 @@ public class CameraController : MonoBehaviour {
     private struct VirtualCamPair{
         public CinemachineVirtualCamera normal;
         public CinemachineVirtualCamera shake;
+
+        public void SetFocus(Transform t) {
+            normal.Follow = shake.Follow = t;
+            normal.LookAt = shake.LookAt = t;
+        }
     }
 
     [SerializeField] private VirtualCamPair[] _cams;
@@ -19,7 +23,11 @@ public class CameraController : MonoBehaviour {
     private void Awake() {
         Singleton = this;
     }
-    private void Start () {
+    private IEnumerator Start() {
+
+        //Wait until the lobby players have been deleted
+        yield return null;
+
         _brain = Camera.main.GetComponent<CinemachineBrain>();
         EventController.Singleton.ScreenShakeEvent += ShakeScreen;
 
@@ -35,17 +43,15 @@ public class CameraController : MonoBehaviour {
     }
 
     private void FindLocalPlayer() {
-       var localPlayer = NetworkState.Singleton.GetCurrentPlayers().Single(current => current.isLocalPlayer);
+       var localPlayer = NetworkState.Singleton.GetCurrentPlayers().SingleOrDefault(element => element.isLocalPlayer);
 
         if (localPlayer == null) return;
-
-        _brain.ActiveVirtualCamera.LookAt = localPlayer.transform;
-        _brain.ActiveVirtualCamera.Follow = localPlayer.transform;
+        _cams[0].SetFocus(localPlayer.transform);
     }
 
     public void SetFocus(Transform t) {
-        _brain.ActiveVirtualCamera.LookAt = t;
-        _brain.ActiveVirtualCamera.Follow = t;
+        if(t == null) return;
+        _cams[0].SetFocus(t);
     }
     private void OnDestroy() {
         EventController.Singleton.ScreenShakeEvent -= ShakeScreen;

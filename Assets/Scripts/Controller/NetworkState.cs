@@ -1,7 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
+using System.Linq;
 
 public class NetworkState : NetworkBehaviour {
 
@@ -25,6 +27,17 @@ public class NetworkState : NetworkBehaviour {
             Debug.Log("Tried to add invalid player. Component of type CatController required.");
         }
     }
+    
+    public void AddPlayer(CatController controller) 
+    {
+        _currentPlayers.Add(controller);
+    }
+
+    public void RemovePlayer(CatController controller) 
+    {
+        _currentPlayers.Remove(controller);
+    }
+
     public List<CatController> GetCurrentPlayers() {
         return _currentPlayers;
     }
@@ -34,15 +47,15 @@ public class NetworkState : NetworkBehaviour {
         }
         _currentPlayers.Clear();
     }
-    [Command]
-    public void CmdTryKillPlayer(GameObject player) {
-        var temp = player.GetComponent<CatController>();
-        if (temp != null) {
-            Destroy(player);
-            _currentPlayers.Remove(temp);
-        }
-        else {
-            Debug.Log("Tried to remove invalid player. Component of type CatController required.");
+
+    public void KillAllLobbyPlayers() {
+
+        for (int i = _currentPlayers.Count - 1; i >= 0; i--) {
+            if (_currentPlayers[i].IsLobbyCat) {
+                Debug.LogError("destroyed a cat");
+                Destroy(_currentPlayers[i].gameObject);
+                _currentPlayers.RemoveAt(i);
+            }
         }
     }
 }

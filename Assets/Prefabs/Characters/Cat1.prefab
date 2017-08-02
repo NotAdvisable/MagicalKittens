@@ -34,8 +34,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4175470668250348}
-  - component: {fileID: 135314876095333784}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Bip01 Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1312,6 +1311,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _landingEffect: {fileID: 0}
+  _particleSpawnPosition: {fileID: 0}
+  _currentProjectile: {fileID: 0}
 --- !u!114 &114553184206943034
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1380,28 +1381,16 @@ MonoBehaviour:
   m_Script: {fileID: -1768714887, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_TransformSyncMode: 1
-  m_SendInterval: 0.033333335
-  m_SyncRotationAxis: 2
+  m_TransformSyncMode: 3
+  m_SendInterval: 0.1
+  m_SyncRotationAxis: 7
   m_RotationSyncCompression: 0
   m_SyncSpin: 0
   m_MovementTheshold: 0.001
   m_VelocityThreshold: 0.0001
   m_SnapThreshold: 5
   m_InterpolateRotation: 1
-  m_InterpolateMovement: 8
---- !u!135 &135314876095333784
-SphereCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1028677235401096}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 3.8
-  m_Center: {x: -1.68, y: 0.63, z: 0}
+  m_InterpolateMovement: 1
 --- !u!136 &136846375286593370
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -1411,10 +1400,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 4
-  m_Height: 10
+  m_Radius: 5
+  m_Height: 15
   m_Direction: 2
-  m_Center: {x: 0, y: 4, z: 0}
+  m_Center: {x: 0, y: 5, z: 0.5}
 --- !u!137 &137704296681143672
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

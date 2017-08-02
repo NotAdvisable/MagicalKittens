@@ -148,8 +148,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4512554080629664}
-  - component: {fileID: 135139013960297882}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Bip01 Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -517,6 +516,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1861835284620476
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4113265965390666}
+  m_Layer: 8
+  m_Name: ParticleSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1868751614362326
 GameObject:
   m_ObjectHideFlags: 0
@@ -681,6 +695,19 @@ Transform:
   - {fileID: 4171387175101586}
   m_Father: {fileID: 4606837692036888}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4113265965390666
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1861835284620476}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3, y: 4.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4512554080629664}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4138712366995788
 Transform:
@@ -919,6 +946,7 @@ Transform:
   - {fileID: 4639496550008272}
   - {fileID: 4176892648902480}
   - {fileID: 4934706594050382}
+  - {fileID: 4113265965390666}
   m_Father: {fileID: 4209620786842316}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1333,6 +1361,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _landingEffect: {fileID: 0}
+  _particleSpawnPosition: {fileID: 4113265965390666}
+  _currentProjectile: {fileID: 1597566671545974, guid: d6fea5663152c824fbbffcf156169305,
+    type: 2}
 --- !u!114 &114363161154857360
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1369,16 +1400,16 @@ MonoBehaviour:
   m_Script: {fileID: -1768714887, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_TransformSyncMode: 1
-  m_SendInterval: 0.033333335
-  m_SyncRotationAxis: 2
+  m_TransformSyncMode: 3
+  m_SendInterval: 0.1
+  m_SyncRotationAxis: 7
   m_RotationSyncCompression: 0
   m_SyncSpin: 0
   m_MovementTheshold: 0.001
   m_VelocityThreshold: 0.0001
   m_SnapThreshold: 5
   m_InterpolateRotation: 1
-  m_InterpolateMovement: 8
+  m_InterpolateMovement: 1
 --- !u!114 &114529019927848200
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1390,18 +1421,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b77def44802cb340a525a6eb89f8873, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!135 &135139013960297882
-SphereCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1254799126198368}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 3.8
-  m_Center: {x: -1.68, y: 0.63, z: 0}
 --- !u!136 &136302364932863264
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -1411,10 +1430,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 4
-  m_Height: 10
+  m_Radius: 5
+  m_Height: 15
   m_Direction: 2
-  m_Center: {x: 0, y: 4, z: 0}
+  m_Center: {x: 0, y: 5, z: 0.5}
 --- !u!137 &137190438419156930
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
