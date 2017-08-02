@@ -10,9 +10,13 @@ public class CatController : NetworkCharacter {
 
     [SerializeField] private Transform _particleSpawnPosition;
     [SerializeField] private GameObject _currentProjectile;
+    [SerializeField] private float _ShootCoolDown = 1f;
+
+    private bool _cooldownComplete = true;
     private Animator _anim;
     private TextMesh _displayName;
     private short _skinID;
+
 
     public bool IsLobbyCat {
         get { return bIsLobbyCat; }
@@ -66,7 +70,16 @@ public class CatController : NetworkCharacter {
     }
 
     public void SpawnProjectile() {
-        Instantiate(_currentProjectile, _particleSpawnPosition.position, transform.rotation);
+        if (_cooldownComplete) {
+            var projectile = Instantiate(_currentProjectile, _particleSpawnPosition.position, transform.rotation);
+         //   projectile.
+            StartCoroutine(ShootCoolDown());
+        }
+    }
+    private IEnumerator ShootCoolDown() {
+        _cooldownComplete = false;
+        yield return new WaitForSeconds(_ShootCoolDown);
+        _cooldownComplete = true;
     }
     //[Command]
     //public void CmdSetPlayerName(string name) {

@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Projectile : MonoBehaviour {
+    private float _playerSpeed;
 
-	// Use this for initialization
 	void Start () {
-        GetComponent<Rigidbody>().AddForce(Vector3.forward * 3, ForceMode.VelocityChange);
+        GetComponent<Rigidbody>().velocity = transform.forward *  (_playerSpeed + 20);
+        Destroy(gameObject, 1f);
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    public void SetPlayerSpeed(float speed) {
+        _playerSpeed = speed;
+    }
 }

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Networking;
 
-public class StatefulMonoBehaviour<T> : MonoBehaviour {
+public class StatefulMonoBehaviour<T> : NetworkBehaviour {
     protected FSM<T> fsm;
 
 	public void ChangeState(IFSMState<T> e) {

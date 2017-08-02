@@ -34,7 +34,7 @@ public class CatMovement : NetworkBehaviour {
         _input = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
         _inputRun = Input.GetKey(KeyCode.LeftShift);
         _inputJump = Input.GetKey(KeyCode.Space);
-        _mouseClickLeft = Input.GetMouseButtonDown(0);
+        _mouseClickLeft = Input.GetMouseButton(0);
     }
     private void HandleMovement() {
         //adjust facing direction
@@ -65,7 +65,7 @@ public class CatMovement : NetworkBehaviour {
             _rb.AddForce(Vector3.down * 15, ForceMode.Acceleration);
         }
         if (_mouseClickLeft) {
-         //   _controller.SpawnProjectile();
+          _controller.SpawnProjectile();
         }
     }
     private void UpdateAnimator() {
