@@ -10,7 +10,7 @@ public class CatController : NetworkCharacter
     [SerializeField]
     private Transform _particleSpawnPosition;
     [SerializeField]
-    private GameObject _currentProjectile;
+    private int _currentProjectileID = 0;
     [SerializeField]
     private PlayernameDisplay _playerNameDisplay;
     [SerializeField]
@@ -80,6 +80,7 @@ public class CatController : NetworkCharacter
 
     private IEnumerator WaitForNewLocalPlayer()
     {
+        yield return new WaitForSeconds(.1f);
         yield return new WaitUntil(() =>
         {
             CatController localCat = GetLocalCat();
@@ -156,8 +157,7 @@ public class CatController : NetworkCharacter
     }
     [Command]
     private void CmdSpawnProjectile() {
-        var projectile = Instantiate(_currentProjectile, _particleSpawnPosition.position, transform.rotation);
-        NetworkServer.Spawn(projectile);
+        NetworkState.Singleton.RpcSpawnProjectile(_currentProjectileID, _particleSpawnPosition.position, transform.rotation);
     }
     private IEnumerator ShootCoolDown() {
         _cooldownComplete = false;

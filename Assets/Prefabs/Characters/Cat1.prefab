@@ -1342,10 +1342,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _landingEffect: {fileID: 0}
   _particleSpawnPosition: {fileID: 4323314630890202}
-  _currentProjectile: {fileID: 1566252822593856, guid: acc17d592f83203478b408d805dc1dbf,
-    type: 2}
+  _currentProjectileID: 0
   _playerNameDisplay: {fileID: 114244219469734286}
   _shootCooldown: 1
+  m_PlayerName: 
 --- !u!114 &114553184206943034
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1430,7 +1430,7 @@ CapsuleCollider:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1723546811470360}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 1c6a0c5a6ab786949af1e4ecc88d9524, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 5

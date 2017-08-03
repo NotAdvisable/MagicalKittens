@@ -14,6 +14,10 @@ public class NetworkState : NetworkBehaviour
 
     public static NetworkState Singleton { get { return _instance; } }
 
+    [SerializeField] private GameObject[] _projectiles;
+
+    private Dictionary<int, GameObject> _Projectile_IDtoGO = new Dictionary<int, GameObject>();
+    private Dictionary<GameObject, int> _Projectile_GOtoID = new Dictionary<GameObject, int>();
 
     private void Awake()
     {
@@ -26,6 +30,14 @@ public class NetworkState : NetworkBehaviour
             _instance = this;
         }
         DontDestroyOnLoad(this);
+
+
+        for (int i = 0; i < _projectiles.Length; i++)
+        {
+            _Projectile_GOtoID.Add(_projectiles[i], i);
+            _Projectile_IDtoGO.Add(i, _projectiles[i]);
+        }
+        Debug.Log(_Projectile_GOtoID.Count);
     }
 
     public void TryAddPlayer(GameObject player)
@@ -77,5 +89,10 @@ public class NetworkState : NetworkBehaviour
                 _currentPlayers.RemoveAt(i);
             }
         }
+    }
+    [ClientRpc]
+    public void RpcSpawnProjectile(int id, Vector3 position, Quaternion rotation)
+    {
+       Instantiate(_Projectile_IDtoGO[id], position, rotation);
     }
 }

@@ -10,10 +10,10 @@ public class BunnyKing : NetworkCharacter {
 		
 	}
 	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    public void ActivateBoss()
+    {
+
+    }
 
     public override void Land() {
         base.Land();
