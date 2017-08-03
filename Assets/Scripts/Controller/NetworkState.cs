@@ -5,53 +5,73 @@ using UnityEngine;
 using UnityEngine.Networking;
 using System.Linq;
 
-public class NetworkState : NetworkBehaviour {
-
-    public static NetworkState Singleton { get; private set; }
+public class NetworkState : NetworkBehaviour
+{
 
     private List<CatController> _currentPlayers = new List<CatController>();
 
-    void Awake() {
-        Singleton = this;
-        DontDestroyOnLoad(this);
+    private static NetworkState _instance;
 
+    public static NetworkState Singleton { get { return _instance; } }
+
+
+    private void Awake()
+    {
+        if (_instance != null && _instance != this)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            _instance = this;
+        }
+        DontDestroyOnLoad(this);
     }
 
-    public void TryAddPlayer(GameObject player) {
+    public void TryAddPlayer(GameObject player)
+    {
         var temp = player.GetComponent<CatController>();
 
-        if (temp != null) {
+        if (temp != null)
+        {
             _currentPlayers.Add(temp);
         }
-        else {
+        else
+        {
             Debug.Log("Tried to add invalid player. Component of type CatController required.");
         }
     }
-    
-    public void AddPlayer(CatController controller) 
+
+    public void AddPlayer(CatController controller)
     {
         _currentPlayers.Add(controller);
     }
 
-    public void RemovePlayer(CatController controller) 
+    public void RemovePlayer(CatController controller)
     {
         _currentPlayers.Remove(controller);
     }
 
-    public List<CatController> GetCurrentPlayers() {
+    public List<CatController> GetCurrentPlayers()
+    {
         return _currentPlayers;
     }
-    public void KillAllPlayers() {
-        foreach (CatController player in _currentPlayers) {
+    public void KillAllPlayers()
+    {
+        foreach (CatController player in _currentPlayers)
+        {
             Destroy(player.gameObject);
         }
         _currentPlayers.Clear();
     }
 
-    public void KillAllLobbyPlayers() {
+    public void KillAllLobbyPlayers()
+    {
 
-        for (int i = _currentPlayers.Count - 1; i >= 0; i--) {
-            if (_currentPlayers[i].IsLobbyCat) {
+        for (int i = _currentPlayers.Count - 1; i >= 0; i--)
+        {
+            if (_currentPlayers[i].IsLobbyCat)
+            {
                 Debug.LogError("destroyed a cat");
                 Destroy(_currentPlayers[i].gameObject);
                 _currentPlayers.RemoveAt(i);

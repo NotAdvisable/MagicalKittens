@@ -11,6 +11,21 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 1940568349587074}
   m_IsPrefabParent: 1
+--- !u!1 &1035943524668962
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4398617957571104}
+  m_Layer: 8
+  m_Name: ParticleSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1094581397253096
 GameObject:
   m_ObjectHideFlags: 1
@@ -822,6 +837,7 @@ Transform:
   - {fileID: 4212926420892526}
   - {fileID: 4781835472401102}
   - {fileID: 4328406365609312}
+  - {fileID: 4398617957571104}
   m_Father: {fileID: 4044619234015884}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -894,6 +910,20 @@ Transform:
   - {fileID: 4783632652089228}
   m_Father: {fileID: 4469587014409508}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4398617957571104
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1035943524668962}
+  m_LocalRotation: {x: 0.000000019326597, y: 0.00000005593286, z: 0.000000044703473,
+    w: 1}
+  m_LocalPosition: {x: -3, y: 4.5, z: -0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4344677378386916}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4408968595638816
 Transform:
@@ -1336,8 +1366,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _landingEffect: {fileID: 0}
-  _particleSpawnPosition: {fileID: 0}
-  _currentProjectile: {fileID: 0}
+  _particleSpawnPosition: {fileID: 4398617957571104}
+  _currentProjectile: {fileID: 1566252822593856, guid: acc17d592f83203478b408d805dc1dbf,
+    type: 2}
+  _playerNameDisplay: {fileID: 114478721440096782}
+  _shootCooldown: 1
 --- !u!114 &114647318320456718
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1383,13 +1416,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_TransformSyncMode: 3
   m_SendInterval: 0.1
-  m_SyncRotationAxis: 7
-  m_RotationSyncCompression: 0
+  m_SyncRotationAxis: 2
+  m_RotationSyncCompression: 2
   m_SyncSpin: 0
   m_MovementTheshold: 0.001
   m_VelocityThreshold: 0.0001
   m_SnapThreshold: 5
-  m_InterpolateRotation: 1
+  m_InterpolateRotation: 1000
   m_InterpolateMovement: 1
 --- !u!136 &136647145021066602
 CapsuleCollider:

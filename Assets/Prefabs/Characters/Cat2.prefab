@@ -624,6 +624,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1992950946083786
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4375200827150310}
+  m_Layer: 8
+  m_Name: ParticleSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!4 &4005558512517836
 Transform:
   m_ObjectHideFlags: 1
@@ -637,6 +652,7 @@ Transform:
   - {fileID: 4164023508863746}
   - {fileID: 4120273429117384}
   - {fileID: 4183618272097844}
+  - {fileID: 4375200827150310}
   m_Father: {fileID: 4272048536746184}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -860,6 +876,20 @@ Transform:
   - {fileID: 4651251590849260}
   m_Father: {fileID: 4272048536746184}
   m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4375200827150310
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1992950946083786}
+  m_LocalRotation: {x: 0.000000019326597, y: 0.00000005593286, z: 0.000000044703473,
+    w: 1}
+  m_LocalPosition: {x: -3, y: 4.5, z: -0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4005558512517836}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4379522561559398
 Transform:
@@ -1312,8 +1342,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _landingEffect: {fileID: 0}
-  _particleSpawnPosition: {fileID: 0}
-  _currentProjectile: {fileID: 0}
+  _particleSpawnPosition: {fileID: 4375200827150310}
+  _currentProjectile: {fileID: 1597566671545974, guid: d6fea5663152c824fbbffcf156169305,
+    type: 2}
+  _playerNameDisplay: {fileID: 114760513453838554}
+  _shootCooldown: 1
 --- !u!114 &114693313033169628
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1328,12 +1361,12 @@ MonoBehaviour:
   m_TransformSyncMode: 3
   m_SendInterval: 0.1
   m_SyncRotationAxis: 7
-  m_RotationSyncCompression: 0
+  m_RotationSyncCompression: 2
   m_SyncSpin: 0
   m_MovementTheshold: 0.001
   m_VelocityThreshold: 0.0001
   m_SnapThreshold: 5
-  m_InterpolateRotation: 1
+  m_InterpolateRotation: 1000
   m_InterpolateMovement: 1
 --- !u!114 &114746465018283980
 MonoBehaviour:

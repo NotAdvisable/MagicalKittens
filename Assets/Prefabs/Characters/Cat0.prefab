@@ -541,7 +541,7 @@ GameObject:
   - component: {fileID: 4617107735975168}
   - component: {fileID: 23369446161070740}
   - component: {fileID: 102598887951659270}
-  - component: {fileID: 114529019927848200}
+  - component: {fileID: 114184247455866804}
   m_Layer: 8
   m_Name: Playername
   m_TagString: Untagged
@@ -1349,6 +1349,17 @@ MonoBehaviour:
     i15: 34
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 1
+--- !u!114 &114184247455866804
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1868751614362326}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b77def44802cb340a525a6eb89f8873, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114186722621815768
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1362,9 +1373,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _landingEffect: {fileID: 0}
   _particleSpawnPosition: {fileID: 4113265965390666}
-  _currentProjectile: {fileID: 1566252822593856, guid: acc17d592f83203478b408d805dc1dbf,
+  _currentProjectile: {fileID: 1597566671545974, guid: d6fea5663152c824fbbffcf156169305,
     type: 2}
-  _ShootCoolDown: 1
+  _playerNameDisplay: {fileID: 114184247455866804}
+  _shootCooldown: 1
 --- !u!114 &114363161154857360
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1404,24 +1416,13 @@ MonoBehaviour:
   m_TransformSyncMode: 3
   m_SendInterval: 0.1
   m_SyncRotationAxis: 7
-  m_RotationSyncCompression: 0
+  m_RotationSyncCompression: 2
   m_SyncSpin: 0
   m_MovementTheshold: 0.001
   m_VelocityThreshold: 0.0001
   m_SnapThreshold: 5
-  m_InterpolateRotation: 1
+  m_InterpolateRotation: 1000
   m_InterpolateMovement: 1
---- !u!114 &114529019927848200
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1868751614362326}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b77def44802cb340a525a6eb89f8873, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!136 &136302364932863264
 CapsuleCollider:
   m_ObjectHideFlags: 1

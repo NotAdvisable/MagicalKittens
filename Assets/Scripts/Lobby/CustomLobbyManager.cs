@@ -3,58 +3,127 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.SceneManagement;
 
-public class CustomLobbyManager : NetworkLobbyManager {
-    Dictionary<int, int> currentPlayers = new Dictionary<int, int>();
+public class CustomLobbyManager : NetworkLobbyManager
+{
+    [SerializeField]
+    private CatController m_DefaultCatPrefab;
+    [SerializeField]
+    private CatController[] m_CatPrefabs;
 
-    public override GameObject OnLobbyServerCreateLobbyPlayer(NetworkConnection conn, short playerControllerId) {
-        if (!currentPlayers.ContainsKey(conn.connectionId)) {
-            currentPlayers.Add(conn.connectionId, 0);
+    private Dictionary<int, CatController> selectedPrefabs = new Dictionary<int, CatController>();
+    private Dictionary<int, CatController> playerCatInstances = new Dictionary<int, CatController>();
 
-        }
-
-        var player = CreatePlayer(conn.connectionId);
-        CatController controller = player.GetComponent<CatController>();
-        if (controller) {
-            controller.IsLobbyCat = true;
-        }
-
+    public override GameObject OnLobbyServerCreateLobbyPlayer(NetworkConnection conn, short playerControllerId)
+    {
+        var player = CreateLobbyPlayer(conn, playerControllerId);
         return player;
     }
-    public void SetPlayerTypeLobby(NetworkConnection conn, int _type) {
 
-        if (currentPlayers.ContainsKey(conn.connectionId))
-            currentPlayers[conn.connectionId] = _type;
-        Debug.Log("set");
-    }
-
-    public override GameObject OnLobbyServerCreateGamePlayer(NetworkConnection conn, short playerControllerId) {
-        // NetworkServer.AddPlayerForConnection(conn, _temp, playerControllerId);
-        Debug.Log("create now");
-
-        var newPlayer = CreatePlayer(conn.connectionId);
+    public override GameObject OnLobbyServerCreateGamePlayer(NetworkConnection conn, short playerControllerId)
+    {
+        var newPlayer = CreateIngamePlayer(conn, playerControllerId);
         return newPlayer;
     }
 
-    public override void OnLobbyClientSceneChanged(NetworkConnection conn) {
-        base.OnLobbyClientSceneChanged(conn);
-
-     //   NetworkState.Singleton.KillAllLobbyPlayers();
+    public override void OnLobbyServerDisconnect(NetworkConnection conn)
+    {
+        base.OnLobbyServerDisconnect(conn);
+        
+        selectedPrefabs.Remove(conn.connectionId);
+        playerCatInstances.Remove(conn.connectionId);
     }
 
-    private GameObject CreatePlayer(int id) {
-        int index = currentPlayers[id];
-        
-        Debug.Log("creating cat number " + index);
-        Debug.Log("created");
+    public override void OnStopServer()
+    {
+        base.OnStopServer();
 
-        Debug.Log("cur not null: " + currentPlayers != null);
+        selectedPrefabs.Clear();
+        playerCatInstances.Clear();
+    }
 
-        Transform transTemp = startPositions[id];
-        GameObject temp = Instantiate(spawnPrefabs[index], transTemp.position, transTemp.rotation);
+    public override void OnStartServer()
+    {
+        base.OnStartServer();
 
-        //NetworkState.Singleton.TryAddPlayer(temp);
+        selectedPrefabs.Clear();
+        playerCatInstances.Clear();
+    }
 
-        return temp;
+    public override void OnServerDisconnect(NetworkConnection conn)
+    {
+        base.OnServerDisconnect(conn);
+
+        Debug.Log("AHAH2");
+        selectedPrefabs.Remove(conn.connectionId);
+        playerCatInstances.Remove(conn.connectionId);
+    }
+
+    public GameObject CreateLobbyPlayer(NetworkConnection conn, short playerControllerId)
+    {
+        //Get this id's starting point
+        Transform spawnPoint = startPositions[Mathf.Min(conn.connectionId, startPositions.Count - 1)];
+
+        //Creates a default cat everyone starts with
+        CatController defaultCat = Instantiate(m_DefaultCatPrefab, spawnPoint.position, spawnPoint.rotation);
+        defaultCat.IsLobbyCat = true;
+        defaultCat.IsInitialCat = true;
+
+        selectedPrefabs.Add(conn.connectionId, m_DefaultCatPrefab);
+        playerCatInstances.Add(conn.connectionId, defaultCat);
+
+        return defaultCat.gameObject;
+    }
+
+    public GameObject CreateIngamePlayer(NetworkConnection conn, short playerControllerId)
+    {
+        //Get this id's starting point
+        Transform spawnPoint = startPositions[Mathf.Min(conn.connectionId, startPositions.Count - 1)];
+
+        //Spawn a new instance of the given cat based on its prefab
+        CatController selectedCatPrefab = m_DefaultCatPrefab;
+        selectedPrefabs.TryGetValue(conn.connectionId, out selectedCatPrefab);
+
+        //Destroy lobby cat object
+        CatController lobbyCat = playerCatInstances[conn.connectionId];
+
+        CatController instance = Instantiate(selectedCatPrefab, spawnPoint.position, spawnPoint.rotation);
+
+        return instance.gameObject;
+    }
+
+    public void ChangeSelectedPrefab(NetworkConnection conn, short playerControllerId, int prefabID)
+    {
+        //Check client inputs
+        if (prefabID < m_CatPrefabs.Length && prefabID >= 0)
+        {
+            //Re-assign the selected prefab for the given connection
+            selectedPrefabs.Remove(conn.connectionId);
+            selectedPrefabs.Add(conn.connectionId, m_CatPrefabs[prefabID]);
+
+            //Get old cat and spawn new one
+            CatController oldCat = playerCatInstances[conn.connectionId];
+            CatController newCat = Instantiate(m_CatPrefabs[prefabID]);
+
+            //Copy transform over from the old cat
+            newCat.transform.position = oldCat.transform.position;
+            newCat.transform.rotation = oldCat.transform.rotation;
+            newCat.transform.localScale = oldCat.transform.localScale;
+
+            //Re-assign the currently spawned cat instance for given connection
+            playerCatInstances.Remove(conn.connectionId);
+            playerCatInstances.Add(conn.connectionId, newCat);
+
+            //Make sure it is marked as lobby cat
+            newCat.IsLobbyCat = true;
+
+            //Copy over name of old cat
+            newCat.PlayerName = oldCat.PlayerName;
+
+            //Replace the controlled object with the new cat and destroy the old one
+            NetworkServer.ReplacePlayerForConnection(conn, newCat.gameObject, playerControllerId);
+            NetworkServer.Destroy(oldCat.gameObject);
+        }
     }
 }

@@ -127,6 +127,7 @@ GameObject:
   - component: {fileID: 135844257985109996}
   - component: {fileID: 114358054367335638}
   - component: {fileID: 54023722757361378}
+  - component: {fileID: 114404122904517222}
   m_Layer: 0
   m_Name: vfx_magicBulletNoExplosion
   m_TagString: Untagged
@@ -474,6 +475,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c41f2716cf070d046b4f227b913103dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114404122904517222
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1597566671545974}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 214
+    i1: 254
+    i2: 165
+    i3: 102
+    i4: 49
+    i5: 82
+    i6: 200
+    i7: 36
+    i8: 251
+    i9: 191
+    i10: 252
+    i11: 241
+    i12: 86
+    i13: 22
+    i14: 147
+    i15: 5
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
 --- !u!114 &114963867403408060
 MonoBehaviour:
   m_ObjectHideFlags: 1
