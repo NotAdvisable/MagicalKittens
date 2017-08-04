@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class LocoState : StateMachineBehaviour {
-
     [SerializeField] private float _minSecondsBetweenIdles = 3;
     [SerializeField] private float _maxSecondsBetweenIdles = 6;
     private float _secondsBetweenIdles;

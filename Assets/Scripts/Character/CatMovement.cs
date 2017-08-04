@@ -57,7 +57,7 @@ public class CatMovement : NetworkBehaviour {
 
         if (_isJumping) {
             Debug.DrawLine(transform.position, transform.position + (Vector3.up * 0.01f) + Vector3.down * .2f, Color.red);
-            if (Physics.Raycast(transform.position + (Vector3.up * 0.01f), Vector3.down, .1f, _groundRayMask)) {
+            if (Physics.Raycast(transform.position + (Vector3.up * 0.01f), Vector3.down, .05f, _groundRayMask)) {
                 _controller.Land();
                 _isJumping = false;
                 return;

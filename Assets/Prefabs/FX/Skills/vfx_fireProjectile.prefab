@@ -412,6 +412,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c41f2716cf070d046b4f227b913103dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _effect: {fileID: 114613551149252540, guid: 954ed538c2a9674438ac800e8cf0e94b, type: 2}
+  _ignorePlayer: 0
+  _initialSpeed: 40
+  _maxLifeTime: 1
 --- !u!114 &114748307434269464
 MonoBehaviour:
   m_ObjectHideFlags: 1

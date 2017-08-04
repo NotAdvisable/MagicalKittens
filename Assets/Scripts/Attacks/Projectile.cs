@@ -4,9 +4,27 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
+    [SerializeField] private ExplosionEffect _effect;
+    [SerializeField] private bool _ignorePlayer;
+    [SerializeField] private float _initialSpeed = 40f;
+    [SerializeField] private float _maxLifeTime = 1f;
+
+    private Rigidbody _rb;
     void Start()
     {
-        GetComponent<Rigidbody>().velocity = transform.forward * 30;
-        Destroy(gameObject, 1f);
+        _rb = GetComponent<Rigidbody>();
+        _rb.AddForce(transform.forward * _initialSpeed,ForceMode.VelocityChange);
+        Destroy(gameObject, _maxLifeTime);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+       if (other.CompareTag("Player") && !_ignorePlayer) return;
+       var hit = other.GetComponent<IHitable>();
+       if (hit != null) hit.Hit();
+        _rb.velocity = Vector3.zero;
+       // _rb.AddForce(Vector3.zero, ForceMode.VelocityChange);
+       Instantiate(_effect, transform.position, Quaternion.identity);
+
     }
 }
