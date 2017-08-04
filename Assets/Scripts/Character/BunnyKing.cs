@@ -5,6 +5,7 @@ using Cinemachine;
 
 public class BunnyKing : NetworkCharacter {
 
+    [SerializeField] GroundAttack _groundAttack;
 	// Use this for initialization
 	void Start () {
 		
@@ -17,6 +18,7 @@ public class BunnyKing : NetworkCharacter {
 
     public override void Land() {
         base.Land();
+        Instantiate(_groundAttack, transform.position + Vector3.up, transform.rotation);
         EventController.Singleton.ScreenShake();
     }
 }

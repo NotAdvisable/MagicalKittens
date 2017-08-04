@@ -892,6 +892,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _landingEffect: {fileID: 0}
+  _groundAttack: {fileID: 114801065213076512, guid: c715e590645b35f4cbaf50140e7b494d,
+    type: 2}
 --- !u!114 &114743551166119504
 MonoBehaviour:
   m_ObjectHideFlags: 1

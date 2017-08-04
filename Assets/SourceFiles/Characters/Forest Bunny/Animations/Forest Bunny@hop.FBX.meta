@@ -105,7 +105,7 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.8293173
+      - time: 0.5023942
         functionName: Land
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 48a040ad6418c634bbc70426de937b6c,
