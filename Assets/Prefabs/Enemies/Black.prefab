@@ -321,9 +321,13 @@ GameObject:
   m_Component:
   - component: {fileID: 4466434903546106}
   - component: {fileID: 95235311443942400}
-  - component: {fileID: 135052632210185330}
-  - component: {fileID: 195297177376565238}
   - component: {fileID: 114585034793675598}
+  - component: {fileID: 114346748410245830}
+  - component: {fileID: 195297177376565238}
+  - component: {fileID: 114924989771064746}
+  - component: {fileID: 114712184558796004}
+  - component: {fileID: 114502860206633778}
+  - component: {fileID: 135052632210185330}
   - component: {fileID: 54004310880905908}
   m_Layer: 0
   m_Name: Black
@@ -589,8 +593,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1848864510066932}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 195.71, y: 0.009155273, z: 14.496841}
+  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
+  m_LocalPosition: {x: 65.60485, y: 0.009155273, z: 43.708344}
   m_LocalScale: {x: 4, y: 4, z: 4}
   m_Children:
   - {fileID: 4689638682590154}
@@ -608,7 +612,7 @@ Transform:
   - {fileID: 4396594023822422}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
 --- !u!4 &4587314091955932
 Transform:
   m_ObjectHideFlags: 1
@@ -773,6 +777,50 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114346748410245830
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1848864510066932}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4af6457ec8ed1a4449a9d4a8a62ca84b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _landingEffect: {fileID: 0}
+--- !u!114 &114502860206633778
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1848864510066932}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 43
+    i1: 64
+    i2: 73
+    i3: 194
+    i4: 15
+    i5: 166
+    i6: 110
+    i7: 196
+    i8: 202
+    i9: 151
+    i10: 203
+    i11: 164
+    i12: 62
+    i13: 53
+    i14: 79
+    i15: 112
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
 --- !u!114 &114585034793675598
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -784,8 +832,52 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e655e5e4aa24d38449b202b1a748f098, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _patrolPath: {fileID: 0}
-  wayPoints: []
+  _aiBehaviour: 1
+  _searchRadius: 30
+  _fieldofView: 120
+  _guardPosition: {fileID: 0}
+  _patrolPoints: []
+  _patrolPathHolder: {fileID: 0}
+--- !u!114 &114712184558796004
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1848864510066932}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1590678366, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Animator: {fileID: 95235311443942400}
+  m_ParameterSendBits: 31
+  param0: 
+  param1: 
+  param2: 
+  param3: 
+  param4: 
+  param5: 
+--- !u!114 &114924989771064746
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1848864510066932}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1768714887, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TransformSyncMode: 3
+  m_SendInterval: 0.06666667
+  m_SyncRotationAxis: 2
+  m_RotationSyncCompression: 0
+  m_SyncSpin: 0
+  m_MovementTheshold: 0.001
+  m_VelocityThreshold: 0.0001
+  m_SnapThreshold: 5
+  m_InterpolateRotation: 1
+  m_InterpolateMovement: 1
 --- !u!135 &135052632210185330
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -863,15 +955,15 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.3
-  m_Speed: 3.5
+  m_Speed: 5
   m_Acceleration: 8
   avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
+  m_AngularSpeed: 400
+  m_StoppingDistance: 0.2
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 0.6
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
+  m_ObstacleAvoidanceType: 3

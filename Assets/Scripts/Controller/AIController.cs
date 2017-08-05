@@ -16,20 +16,22 @@ public class AIController : StatefulMonoBehaviour<AIController> {
     [SerializeField] private AIBehaviour _aiBehaviour;
     [SerializeField] private int _searchRadius;
     [SerializeField] private int _fieldofView = 180;
+
+    public int SearchRadius { get { return _searchRadius; } }
+    public int FieldOfView { get { return _fieldofView; } }
+
+    private EnemyController _controller;
+    private NavMeshAgent _agent;
+
+    public EnemyController Controller { get { return _controller; } }
+    public NavMeshAgent Agent { get { return _agent; } }
+
     //guard
     [SerializeField] private Transform _guardPosition;
 
     //patrol
     [HideInInspector]public List<Vector3> _patrolPoints = new List<Vector3>();
     [SerializeField] private Transform _patrolPathHolder;
-
-    public int SearchRadius { get { return _searchRadius; } }
-    public int FieldOfView { get { return _fieldofView; } }
-    private EnemyController _controller;
-    private NavMeshAgent _agent;
-    public EnemyController Controller { get { return _controller; } }
-    public NavMeshAgent Agent { get { return _agent; } }
-
     void Start()
     {
         _controller = GetComponent<EnemyController>();
@@ -58,6 +60,12 @@ public class AIController : StatefulMonoBehaviour<AIController> {
                 break;
         }
 
+    }
+    protected override void Update()
+    {
+        if (!_controller.isServer) return;
+
+        fsm.Update();
     }
 
 }

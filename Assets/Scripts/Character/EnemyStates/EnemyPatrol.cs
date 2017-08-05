@@ -38,7 +38,7 @@ public class EnemyPatrol : IFSMState<AIController> {
         {
             currentWaypoint = (currentWaypoint < entity._patrolPoints.Count-1) ? currentWaypoint+1 : 0;
             //entity.StartCoroutine(TurnThenContinue(entity._patrolPoints[currentWaypoint], entity.transform, entity));
-            entity.Agent.destination = entity._patrolPoints[currentWaypoint];
+            entity.Controller.RpcReplicateAgentDest(entity._patrolPoints[currentWaypoint]);
         }
         entity.Controller.SetAnimMoving(entity.Agent.velocity.magnitude/entity.Agent.speed);
     }
