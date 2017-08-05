@@ -4,15 +4,14 @@ using UnityEngine;
 
 public class EnemyController : NetworkCharacter {
 
-	// Use this for initialization
+    private Animator _anim;
 	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+        _anim = GetComponent<Animator>();
 
+    }
+    public void SetAnimMoving(float value)
+    {
+        _anim.SetFloat("Speed", value);
+    }
 
 }

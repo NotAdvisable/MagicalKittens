@@ -8,8 +8,6 @@ public class StatefulMonoBehaviour<T> : MonoBehaviour {
 	}
 
 	protected virtual void Update() {
-        // do nothing but update the internal state machine 
-        // (delegates to the current state)
 		fsm.Update();
 	}
 }

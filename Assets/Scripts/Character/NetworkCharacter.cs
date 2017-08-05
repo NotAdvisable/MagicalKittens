@@ -12,9 +12,13 @@ public class NetworkCharacter : NetworkBehaviour, IHitable {
     }
     public virtual void Hit() { }
 
-    public virtual Vector3 FindFirstPlayerWithinDistance(float distance)
+    public virtual Transform FindAnyPlayerWithinDistance(float distance)
     {
-        var posList = NetworkState.Singleton.GetCurrentPlayers().Select(element => element.transform.position).ToList();
-        return transform.position.FirstWithinDistance(posList, distance);
+        return transform.position.FirstWithinDistance(NetworkState.Singleton.GetPlayerTransform(), distance);
     }
+    public virtual Transform FindClosestPlayerWithinDistance(float distance)
+    {
+        return transform.ClosestTransformWithinDistance(NetworkState.Singleton.GetPlayerTransform(), distance);
+    }
+
 }

@@ -2,32 +2,62 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using UnityEngine.AI;
 
 public class AIController : StatefulMonoBehaviour<AIController> {
+    public enum AIBehaviour
+    {
+        Guard,
+        Patrol,
+        Kamikaze,
+        Mage
+    }
+    //general
+    [SerializeField] private AIBehaviour _aiBehaviour;
+    [SerializeField] private int _searchRadius;
+    [SerializeField] private int _fieldofView = 180;
+    //guard
+    [SerializeField] private Transform _guardPosition;
 
-    [SerializeField] private GameObject _patrolPath;
-    [SerializeField] private float _searchRadius;
-    [HideInInspector]public List<Vector3> wayPoints = new List<Vector3>();
+    //patrol
+    [HideInInspector]public List<Vector3> _patrolPoints = new List<Vector3>();
+    [SerializeField] private Transform _patrolPathHolder;
 
-    public float SearchRadius { get { return _searchRadius; } }
-
+    public int SearchRadius { get { return _searchRadius; } }
+    public int FieldOfView { get { return _fieldofView; } }
     private EnemyController _controller;
+    private NavMeshAgent _agent;
+    public EnemyController Controller { get { return _controller; } }
+    public NavMeshAgent Agent { get { return _agent; } }
 
-    public NetworkCharacter Controller { get { return _controller; } }
-
-    void Awake()
+    void Start()
     {
         _controller = GetComponent<EnemyController>();
+        _agent = GetComponent<NavMeshAgent>();
 
-        if (_patrolPath != null)
+        if (!_controller.isServer) return;
+
+        switch (_aiBehaviour)
         {
-            foreach (Transform t in _patrolPath.transform)
-            {
-            if (!t.Equals(_patrolPath.transform))
-                wayPoints.Add(t.position);
-            }
-            fsm = new FSM<AIController>(this, new EnemyPatrol());
+            case AIBehaviour.Guard:
+                break;
+            case AIBehaviour.Patrol:
+                if (_patrolPathHolder != null)
+                {
+                    foreach (Transform t in _patrolPathHolder)
+                    {
+                        if (!t.Equals(_patrolPathHolder))
+                            _patrolPoints.Add(t.position);
+                    }
+                    fsm = new FSM<AIController>(this, new EnemyPatrol());
+                }
+                break;
+            case AIBehaviour.Kamikaze:
+                break;
+            case AIBehaviour.Mage:
+                break;
         }
+
     }
 
 }

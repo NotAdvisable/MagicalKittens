@@ -7,17 +7,12 @@ using System.Linq;
 
 public class NetworkState : NetworkBehaviour
 {
-
     private List<CatController> _currentPlayers = new List<CatController>();
-
     private static NetworkState _instance;
 
     public static NetworkState Singleton { get { return _instance; } }
 
     [SerializeField] private GameObject[] _projectiles;
-
-    private Dictionary<int, GameObject> _Projectile_IDtoGO = new Dictionary<int, GameObject>();
-    private Dictionary<GameObject, int> _Projectile_GOtoID = new Dictionary<GameObject, int>();
 
     private void Awake()
     {
@@ -30,16 +25,7 @@ public class NetworkState : NetworkBehaviour
             _instance = this;
         }
         DontDestroyOnLoad(this);
-
-
-        for (int i = 0; i < _projectiles.Length; i++)
-        {
-            _Projectile_GOtoID.Add(_projectiles[i], i);
-            _Projectile_IDtoGO.Add(i, _projectiles[i]);
-        }
-        Debug.Log(_Projectile_GOtoID.Count);
     }
-
     public void TryAddPlayer(GameObject player)
     {
         var temp = player.GetComponent<CatController>();
@@ -76,6 +62,10 @@ public class NetworkState : NetworkBehaviour
         }
         _currentPlayers.Clear();
     }
+    public List<Transform> GetPlayerTransform()
+    {
+        return _currentPlayers.Select(element => element.transform).ToList();
+    }
 
     public void KillAllLobbyPlayers()
     {
@@ -93,6 +83,6 @@ public class NetworkState : NetworkBehaviour
     [ClientRpc]
     public void RpcSpawnProjectile(int id, Vector3 position, Quaternion rotation)
     {
-       Instantiate(_Projectile_IDtoGO[id], position, rotation);
+       Instantiate(_projectiles[id], position, rotation);
     }
 }
