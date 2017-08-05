@@ -27,7 +27,6 @@ public class EnemyPatrol : IFSMState<AIController> {
         var firstWithinDitance = entity.Controller.FindAnyPlayerWithinDistance(entity.SearchRadius);
         if (firstWithinDitance != null && entity.transform.WithinEulerAngle(firstWithinDitance, entity.FieldOfView))
         {
-            Debug.Log("I SEE YOU");
         }
 
     }

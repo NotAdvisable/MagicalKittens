@@ -6,11 +6,11 @@ using UnityEngine.Networking;
 
 public class EnemyController : NetworkCharacter {
 
-    private Animator _anim;
     private NavMeshAgent _agent;
 
-	void Start () {
-        _anim = GetComponent<Animator>();
+    protected override void Start()
+    {
+        base.Start();
         _agent = GetComponent<NavMeshAgent>();
     }
     public void SetAnimMoving(float value)
@@ -22,8 +22,13 @@ public class EnemyController : NetworkCharacter {
     {
         _agent.destination = destination;
     }
-    public override void Hit()
+    public override void Hit(float dmg)
     {
         _anim.SetTrigger("Hit");
+    }
+    public override void Die()
+    {
+        _anim.SetTrigger("Die");
+        _agent.speed = 0;
     }
 }

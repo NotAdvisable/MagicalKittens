@@ -1,3 +1,3 @@
 ﻿public interface IHitable {
-    void Hit();
+    void Hit(float dmg);
 }

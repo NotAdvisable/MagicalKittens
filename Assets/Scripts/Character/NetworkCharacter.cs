@@ -1,16 +1,31 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Networking;
-using System.Linq;
+
+[RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(Health))]
 
 public class NetworkCharacter : NetworkBehaviour, IHitable {
 
     [SerializeField] private GameObject _landingEffect;
+    protected Animator _anim;
+    protected Health _health;
+
+    protected virtual void Start()
+    {
+        _anim = GetComponent<Animator>();
+        _health = GetComponent<Health>();
+    }
+
     public virtual void Land() {
         if (_landingEffect != null) Instantiate(_landingEffect, transform.position + Vector3.up,Quaternion.identity);
     }
-    public virtual void Hit() { }
+    public virtual void Hit(float dmg) {
+        _health.InflictDamage(dmg);
+    }
+
+    public virtual void Die() { }
+
+    public virtual void Decay() { }
 
     public virtual Transform FindAnyPlayerWithinDistance(float distance)
     {

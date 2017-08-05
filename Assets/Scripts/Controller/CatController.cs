@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -18,42 +19,47 @@ public class CatController : NetworkCharacter
 
     public bool IsLobbyCat
     {
-        get { return m_bIsLobbyCat; }
-        set { m_bIsLobbyCat = value; }
+        get { return _isLobbyCat; }
+        set { _isLobbyCat = value; }
     }
     public bool IsInitialCat
     {
-        get { return m_bIsInitialCat; }
-        set { m_bIsInitialCat = value; }
+        get { return _isInitialCat; }
+        set { _isInitialCat = value; }
     }
 
     public string PlayerName
     {
-        get { return m_PlayerName; }
-        set { m_PlayerName = value; }
+        get { return _playerName; }
+        set { _playerName = value; }
     }
 
     [SyncVar]
-    private bool m_bIsLobbyCat;
+    private bool _isLobbyCat;
     [SyncVar(hook = "OnInitialCatStatusChanged")]
-    private bool m_bIsInitialCat;
+    private bool _isInitialCat;
     [SyncVar(hook = "OnPlayerNameChanged")]
-    public string m_PlayerName;
+    public string _playerName;
 
-    private bool bSendPlayerDataOnStart = false;
-    private Animator _anim;
+    private bool _sendPlayerDataOnStart = false;
+
+    internal void Respawn()
+    {
+        throw new NotImplementedException();
+    }
+
     private short _skinID;
     private bool _cooldownComplete = true;
 
 
     void Awake()
     {
-        _anim = GetComponent<Animator>();
         _playerNameDisplay.Controller = this;
     }
 
-    void Start()
+    protected override void Start()
     {
+        base.Start();
         var hud = FindObjectOfType<CustomHUD>();
         if (hud != null)
         {
@@ -110,7 +116,7 @@ public class CatController : NetworkCharacter
         {
             hud.SetLocalCat(this);
 
-            if (bSendPlayerDataOnStart)
+            if (_sendPlayerDataOnStart)
             {
                 CmdSendPlayerData(hud.ReturnCharacterID(), hud.ReturnPlayerName());
             }
@@ -119,15 +125,15 @@ public class CatController : NetworkCharacter
 
     private void OnPlayerNameChanged(string newName)
     {
-        m_PlayerName = newName;
+        _playerName = newName;
         _playerNameDisplay.SetText(newName);
     }
 
     private void OnInitialCatStatusChanged(bool bIsInitialCat)
     {
-        m_bIsInitialCat = bIsInitialCat;
+        _isInitialCat = bIsInitialCat;
         var hud = FindObjectOfType<CustomHUD>();
-        if (hud && m_bIsInitialCat)
+        if (hud && _isInitialCat)
         {
             if (hasAuthority)
             {
@@ -139,7 +145,7 @@ public class CatController : NetworkCharacter
                 //If we have no authority at this point we either are not set up yet
                 //or we are no local player at all. Setting this will ensure that
                 //local player is sent when the local player callback is invoked
-                bSendPlayerDataOnStart = true;
+                _sendPlayerDataOnStart = true;
             }
         }
     }
@@ -168,7 +174,7 @@ public class CatController : NetworkCharacter
     [Command]
     public void CmdSendPlayerData(int selectedCatIndex, string name)
     {
-        m_PlayerName = name;
+        _playerName = name;
         OnPlayerNameChanged(name);
 
         if (IsLobbyCat)
