@@ -12,10 +12,10 @@ Key features:
  * LAN Multiplayer for up to 4 Players
  * Custom Lobby where you can choose from 4 different cats and enter a display name
  * 6 different skills
- * 5 different bunnies and 4 different AI types (Guard, Patrol, Kamikaze, Mage)
+ * 5 different enemies and 4 different AI types (Guard, Patrol, Kamikaze, Mage)
  * Custom AI Editor incl. field of view visualisation
  * Screen shake and camera use through cinemachine
-
+ * adorable kittens and bunnies
 
  ## Spells
  
