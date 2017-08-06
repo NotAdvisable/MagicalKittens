@@ -314,7 +314,7 @@ MonoBehaviour:
   _ignorePlayer: 0
   _initialSpeed: 55
   _maxLifeTime: 1
-  _damage: 100
+  _damage: 110
 --- !u!114 &114895411974192970
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -572,6 +572,7 @@ GameObject:
   - component: {fileID: 114965471935611322}
   - component: {fileID: 114647318320456718}
   - component: {fileID: 114504474696193826}
+  - component: {fileID: 114097284662645336}
   m_Layer: 8
   m_Name: Cat3
   m_TagString: Player
@@ -1299,6 +1300,18 @@ TextMesh:
   m_Color:
     serializedVersion: 2
     rgba: 4294967295
+--- !u!114 &114097284662645336
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1940568349587074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0a92642dc305e14f81ad902bba517be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxHealth: 1000
 --- !u!114 &114298589506935562
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1370,7 +1383,7 @@ MonoBehaviour:
   _currentProjectileID: 0
   _playerNameDisplay: {fileID: 114478721440096782}
   _shootCooldown: 1
-  m_PlayerName: 
+  _playerName: 
 --- !u!114 &114647318320456718
 MonoBehaviour:
   m_ObjectHideFlags: 1

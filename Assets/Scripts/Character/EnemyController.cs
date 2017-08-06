@@ -7,21 +7,63 @@ using UnityEngine.Networking;
 public class EnemyController : NetworkCharacter {
 
     private NavMeshAgent _agent;
+    private bool _withinAttackRange;
+
+    public bool WithinAttackRange { get { return _withinAttackRange; } }
+
+
+    [SyncVar]private bool _cooldownComplete;
+    public bool CoolDownComplete { get { return _cooldownComplete; } }
+    [SerializeField] private Transform _particleSpawner;
+    [SerializeField] private float _meleeDamage = 75;
+    [SerializeField] private float _kamiKazeDamage = 300;
+    [SerializeField] private GameObject _hitPrefab;
+    [SerializeField] private GameObject _selfDestructPrefab;
+    [SerializeField] private float _attackCooldown = 3f;
+    private Collider _hunted;
 
     protected override void Start()
     {
         base.Start();
         _agent = GetComponent<NavMeshAgent>();
+        _cooldownComplete = true;
     }
-    public void SetAnimMoving(float value)
+
+    //active
+    public void RangeAttack()
     {
-        _anim.SetFloat("Speed", value);
+
+        StartCoroutine(AttackCooldown());
+        NetworkState.Singleton.RpcSpawnProjectile(Random.Range(0,4), _particleSpawner.position, transform.rotation, gameObject);
+        _anim.SetTrigger("Attack");
     }
-    [ClientRpc]
-    public void RpcReplicateAgentDest(Vector3 destination)
+    public void Attack()
     {
-        _agent.destination = destination;
+        StartCoroutine(AttackCooldown());
+        _anim.SetTrigger("Attack");
+        //Instantiate(_hitPrefab, transform.position + Vector3.forward * 2, Quaternion.identity);
+        var targetHealth = _hunted.GetComponent<Health>();
+        if (targetHealth != null) targetHealth.InflictDamage(_meleeDamage);
     }
+    public void SelfDestruct()
+    {
+        Attack();
+        Instantiate(_selfDestructPrefab, transform.position, transform.rotation);
+
+        var targetHealth = _hunted.GetComponent<Health>();
+        if (targetHealth != null) targetHealth.InflictDamage(_kamiKazeDamage);
+
+        EventController.Singleton.ScreenShake();
+        Destroy(gameObject);
+    }
+    private IEnumerator AttackCooldown()
+    {
+        _cooldownComplete = false;
+        yield return new WaitForSeconds(_attackCooldown);
+        _cooldownComplete = true;
+    }
+
+    //passive
     public override void Hit(float dmg)
     {
         _anim.SetTrigger("Hit");
@@ -29,8 +71,27 @@ public class EnemyController : NetworkCharacter {
     }
     public override void Die()
     {
+        EventController.Singleton.EnemyDied();
         GetComponent<AIController>().TurnOffFSM();
         _anim.SetTrigger("Die");
         _agent.speed = 0;
+    }
+    public void SetAnimMoving(float value)
+    {
+        _anim.SetFloat("Speed", value);
+    }
+
+    //trigger
+    private void OnTriggerEnter(Collider other)
+    {
+        if (!other.GetComponent<CatController>()) return;
+        _hunted = other;
+        _withinAttackRange = true;
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (!other.GetComponent<CatController>() || other != _hunted) return;
+        _hunted = null;
+        _withinAttackRange = false;
     }
 }

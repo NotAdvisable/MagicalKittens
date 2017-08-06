@@ -166,7 +166,7 @@ public class CatController : NetworkCharacter
     }
     [Command]
     private void CmdSpawnProjectile() {
-        NetworkState.Singleton.RpcSpawnProjectile(_currentProjectileID, _particleSpawnPosition.position, transform.rotation);
+        NetworkState.Singleton.RpcSpawnProjectile(_currentProjectileID, _particleSpawnPosition.position, transform.rotation,gameObject);
     }
     private IEnumerator ShootCoolDown() {
         _cooldownComplete = false;

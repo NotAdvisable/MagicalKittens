@@ -81,13 +81,13 @@ public class NetworkState : NetworkBehaviour
         }
     }
     [ClientRpc]
-    public void RpcSpawnProjectile(int id, Vector3 position, Quaternion rotation)
+    public void RpcSpawnProjectile(int id, Vector3 position, Quaternion rotation, GameObject shooter)
     {
-       Instantiate(_projectiles[id], position, rotation);
+       var projectile = Instantiate(_projectiles[id], position, rotation);
+        projectile.GetComponent<Projectile>().SetShooter(shooter);
     }
     public void RespawnProp(int id, Vector3 position, Quaternion rotation, int timeInSec)
     {
-        Debug.Log(id);
         StartCoroutine(RespawnPropCoroutine(_books[id], position,rotation,timeInSec));
     }
     public IEnumerator RespawnPropCoroutine(Collectible prop, Vector3 position, Quaternion rotation, int timeInSec)

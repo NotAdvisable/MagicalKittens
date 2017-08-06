@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - HUD
+  - LevelBounds
   layers:
   - Default
   - TransparentFX
@@ -16,9 +17,9 @@ TagManager:
   - 
   - Player
   - BossTrigger
-  - 
-  - 
-  - 
+  - LevelBounds
+  - Enemy
+  - Boss
   - 
   - 
   - 

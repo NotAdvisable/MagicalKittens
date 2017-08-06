@@ -209,6 +209,7 @@ GameObject:
   - component: {fileID: 114693313033169628}
   - component: {fileID: 114167686302418972}
   - component: {fileID: 114312955563386542}
+  - component: {fileID: 114768344897003188}
   m_Layer: 8
   m_Name: Cat2
   m_TagString: Player
@@ -1346,7 +1347,7 @@ MonoBehaviour:
   _currentProjectileID: 0
   _playerNameDisplay: {fileID: 114760513453838554}
   _shootCooldown: 1
-  m_PlayerName: 
+  _playerName: 
 --- !u!114 &114693313033169628
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1411,6 +1412,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b77def44802cb340a525a6eb89f8873, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114768344897003188
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1298774768144864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0a92642dc305e14f81ad902bba517be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxHealth: 1000
 --- !u!114 &114780863464052778
 MonoBehaviour:
   m_ObjectHideFlags: 1

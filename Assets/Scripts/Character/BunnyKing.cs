@@ -30,6 +30,7 @@ public class BunnyKing : NetworkCharacter {
     }
     public override void Die()
     {
+        EventController.Singleton.BossDied();
         _anim.SetTrigger("Die");
     }
 }

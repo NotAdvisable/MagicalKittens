@@ -10,6 +10,8 @@ public class EventController : MonoBehaviour {
     public static EventController Singleton { get { return _instance; } }
 
     public event Action ScreenShakeEvent;
+    public event Action EnemyDiedEvent;
+    public event Action BossDiedEvent;
 
     private void Awake() {
         if (_instance != null && _instance != this)
@@ -22,7 +24,20 @@ public class EventController : MonoBehaviour {
         }
         DontDestroyOnLoad(this);
     }
-
+    public void EnemyDied()
+    {
+        if (EnemyDiedEvent != null)
+        {
+            EnemyDiedEvent();
+        }
+    }
+    public void BossDied()
+    {
+        if(BossDiedEvent != null)
+        {
+            BossDiedEvent();
+        }
+    }
     public void ScreenShake() {
         if(ScreenShakeEvent != null) {
             ScreenShakeEvent();

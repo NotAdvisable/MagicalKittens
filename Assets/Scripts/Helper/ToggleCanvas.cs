@@ -10,7 +10,6 @@ public class ToggleCanvas : MonoBehaviour {
 
     private void Start () {
         _child = transform.GetChild(0).gameObject;
-        Debug.Log(_child.name);
         _audio = GetComponent<AudioSource>();
 	}
 

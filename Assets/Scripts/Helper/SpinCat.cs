@@ -17,7 +17,7 @@ public class SpinCat : MonoBehaviour {
         }
 
         if (_hitCat && Input.GetMouseButton(0)) {
-            transform.Rotate(-Vector3.up * Input.GetAxis("Mouse X"));
+            transform.Rotate(-Vector3.up * 15 * Input.GetAxis("Mouse X"));
         }
         if (Input.GetMouseButtonUp(0)) {
             _hitCat = false;

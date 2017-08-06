@@ -5,9 +5,9 @@ using UnityEngine;
 
 [CustomEditor(typeof(AIController))]
 public class AIControllerEditor : Editor {
-    public SerializedProperty 
+    public SerializedProperty
     _aiBehaviourProp, _searchRadiusProp, _fieldofViewProp, _walkSpeedProp, _runSpeedProp,
-    _guardPositionProp,
+    _guardPositionProp, _guardChaseTimeProp,
     _patrolPathHolderProp;
 
 
@@ -19,6 +19,7 @@ public class AIControllerEditor : Editor {
         _walkSpeedProp = serializedObject.FindProperty("_walkSpeed");
         _runSpeedProp = serializedObject.FindProperty("_runSpeed");
         _guardPositionProp = serializedObject.FindProperty("_guardPosition");
+        _guardChaseTimeProp = serializedObject.FindProperty("_guardChaseTime");
         _patrolPathHolderProp = serializedObject.FindProperty("_patrolPathHolder");
     }
     public override void OnInspectorGUI()
@@ -40,6 +41,7 @@ public class AIControllerEditor : Editor {
         {
             case AIController.AIBehaviour.Guard:
                 EditorGUILayout.ObjectField( _guardPositionProp, typeof(Transform), new GUIContent("Guarding position"));
+                EditorGUILayout.FloatField("Walk Speed", _guardChaseTimeProp.floatValue);
                 break;
             case AIController.AIBehaviour.Patrol:
                 EditorGUILayout.ObjectField(_patrolPathHolderProp, typeof(Transform), new GUIContent("Patrol path holder"));

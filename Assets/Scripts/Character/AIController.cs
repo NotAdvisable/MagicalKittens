@@ -33,7 +33,9 @@ public class AIController : StatefulMonoBehaviour<AIController> {
 
     //guard
     [SerializeField] private Transform _guardPosition;
+    [SerializeField] private float _guardChaseTime;
     public Transform GuardPosition { get { return _guardPosition; } }
+    public float GuardChaseTime { get { return _guardChaseTime; } }
 
     //patrol
     [HideInInspector]public List<Vector3> _patrolPoints = new List<Vector3>();
@@ -66,6 +68,10 @@ public class AIController : StatefulMonoBehaviour<AIController> {
         switch (_aiBehaviour)
         {
             case AIBehaviour.Guard:
+                if(_guardPosition != null)
+                {
+                    fsm = new FSM<AIController>(this, new EnemyGuard());
+                }
                 break;
             case AIBehaviour.Patrol:
                 if (_patrolPathHolder != null)
@@ -79,8 +85,10 @@ public class AIController : StatefulMonoBehaviour<AIController> {
                 }
                 break;
             case AIBehaviour.Kamikaze:
+                fsm = new FSM<AIController>(this, new EnemyWait());
                 break;
             case AIBehaviour.Mage:
+                fsm = new FSM<AIController>(this, new EnemyWait());
                 break;
         }
     }

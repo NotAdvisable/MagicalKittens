@@ -41,7 +41,7 @@ public class CameraController : MonoBehaviour
     }
     private void ShakeScreen()
     {
-        var camPair = _cams.First(pair => pair.normal == (UnityEngine.Object)_brain.ActiveVirtualCamera);
+        var camPair = _cams.FirstOrDefault(pair => pair.normal == (UnityEngine.Object)_brain.ActiveVirtualCamera);
         if(!camPair.Equals(new VirtualCamPair()))
         {
             StartCoroutine(CamShake(camPair));

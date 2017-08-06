@@ -6,6 +6,7 @@ using UnityEngine;
 public class EnemyHunt : IFSMState<AIController>
 {
     private Transform _target;
+    private float _huntedFor;
 
     public EnemyHunt(ref Transform target)
     {
@@ -25,22 +26,36 @@ public class EnemyHunt : IFSMState<AIController>
 
     public void Reason(AIController entity)
     {
-        if (entity.Behaviour != AIController.AIBehaviour.Kamikaze) //Kamikaze hunt you relentlessly
+        if (entity.Controller.WithinAttackRange)
         {
-            var firstWithinDitance = entity.Controller.FindAnyPlayerWithinDistance(entity.SearchRadius);
-            if (firstWithinDitance == null)
-            {
-                if (entity.Behaviour == AIController.AIBehaviour.Patrol)
+            entity.ChangeState(new EnemyAttack(ref _target));
+        }
+        var firstWithinDitance = entity.Controller.FindAnyPlayerWithinDistance(entity.SearchRadius);
+        switch (entity.Behaviour)
+        {
+            case AIController.AIBehaviour.Guard:
+                if ((_huntedFor >= entity.GuardChaseTime && entity.GuardChaseTime != 0) || firstWithinDitance == null)
+                {
+                    entity.ChangeState(new EnemyGuard(2));
+                }
+                break;
+            case AIController.AIBehaviour.Patrol:
+                if (firstWithinDitance == null)
                 {
                     entity.ChangeState(new EnemyPatrol());
                 }
-                else if (entity.Behaviour == AIController.AIBehaviour.Guard)
+                break;
+            case AIController.AIBehaviour.Kamikaze:
+                //never stops hunting
+                break;
+            case AIController.AIBehaviour.Mage:
+                if (firstWithinDitance == null)
                 {
-                    entity.ChangeState(new EnemyGuard());
+                    entity.ChangeState(new EnemyWait());
                 }
-            }
-
+                break;
         }
+
     }
 
     public void Update(AIController entity)
@@ -53,5 +68,6 @@ public class EnemyHunt : IFSMState<AIController>
             entity.Agent.SetDestination(_target.position);
         }
         entity.Controller.SetAnimMoving(entity.Agent.velocity.magnitude / entity.Agent.speed);
+        _huntedFor = _huntedFor + Time.deltaTime;
     }
 }
