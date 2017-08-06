@@ -6,16 +6,13 @@ using UnityEngine.AI;
 using System.Linq;
 
 public class EnemyPatrol : IFSMState<AIController> {
-    private int currentWaypoint;
-
-    private static EnemyPatrol _instance = new EnemyPatrol();
-
-    public static EnemyPatrol Singleton { get { return _instance; } }
+    private int _currentWaypoint;
 
     public void Enter(AIController entity)
     {
-        currentWaypoint = entity._patrolPoints.IndexOf(entity.transform.ClosestVector3(entity._patrolPoints));
-        entity.Agent.SetDestination(entity._patrolPoints[currentWaypoint]);
+        _currentWaypoint = entity._patrolPoints.IndexOf(entity.transform.ClosestVector3(entity._patrolPoints));
+        entity.Agent.SetDestination(entity._patrolPoints[_currentWaypoint]);
+        entity.Agent.speed = entity.WalkSpeed;
     }
 
     public void Exit(AIController entity)
@@ -27,6 +24,7 @@ public class EnemyPatrol : IFSMState<AIController> {
         var firstWithinDitance = entity.Controller.FindAnyPlayerWithinDistance(entity.SearchRadius);
         if (firstWithinDitance != null && entity.transform.WithinEulerAngle(firstWithinDitance, entity.FieldOfView))
         {
+            entity.ChangeState(new EnemyHunt(ref firstWithinDitance));
         }
 
     }
@@ -35,9 +33,9 @@ public class EnemyPatrol : IFSMState<AIController> {
     {
         if (entity.Agent.remainingDistance <= entity.Agent.stoppingDistance)
         {
-            currentWaypoint = (currentWaypoint < entity._patrolPoints.Count-1) ? currentWaypoint+1 : 0;
+            _currentWaypoint = (_currentWaypoint < entity._patrolPoints.Count-1) ? _currentWaypoint+1 : 0;
             //entity.StartCoroutine(TurnThenContinue(entity._patrolPoints[currentWaypoint], entity.transform, entity));
-            entity.Controller.RpcReplicateAgentDest(entity._patrolPoints[currentWaypoint]);
+            entity.Agent.SetDestination(entity._patrolPoints[_currentWaypoint]);
         }
         entity.Controller.SetAnimMoving(entity.Agent.velocity.magnitude/entity.Agent.speed);
     }

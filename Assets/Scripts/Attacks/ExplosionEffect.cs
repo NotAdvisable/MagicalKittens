@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class ExplosionEffect : MonoBehaviour {
 
-	// Use this for initialization
+    [SerializeField] bool _triggerScreenShake;
+
 	void Start () {
-		
+        if (_triggerScreenShake && EventController.Singleton != null) EventController.Singleton.ScreenShake();
 	}
 	
 	// Update is called once per frame

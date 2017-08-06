@@ -24,7 +24,7 @@ namespace MirzaBeig
             // =================================	
             // Classes.
             // =================================
-
+            #pragma warning disable 109, 108
             [RequireComponent(typeof(ParticleSystem))]
             public class ParticlePlexus : MonoBehaviour
             {

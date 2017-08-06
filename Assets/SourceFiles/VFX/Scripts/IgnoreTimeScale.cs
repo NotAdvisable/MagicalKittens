@@ -18,7 +18,7 @@ namespace MirzaBeig
         // =================================	
         // Classes.
         // =================================
-
+        #pragma warning disable 109, 108
         public class IgnoreTimeScale : MonoBehaviour
         {
             // =================================	

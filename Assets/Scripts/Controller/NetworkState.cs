@@ -13,6 +13,7 @@ public class NetworkState : NetworkBehaviour
     public static NetworkState Singleton { get { return _instance; } }
 
     [SerializeField] private GameObject[] _projectiles;
+    [SerializeField] private SpellBook[] _books;
 
     private void Awake()
     {
@@ -74,7 +75,6 @@ public class NetworkState : NetworkBehaviour
         {
             if (_currentPlayers[i].IsLobbyCat)
             {
-                Debug.LogError("destroyed a cat");
                 Destroy(_currentPlayers[i].gameObject);
                 _currentPlayers.RemoveAt(i);
             }
@@ -84,5 +84,15 @@ public class NetworkState : NetworkBehaviour
     public void RpcSpawnProjectile(int id, Vector3 position, Quaternion rotation)
     {
        Instantiate(_projectiles[id], position, rotation);
+    }
+    public void RespawnProp(int id, Vector3 position, Quaternion rotation, int timeInSec)
+    {
+        Debug.Log(id);
+        StartCoroutine(RespawnPropCoroutine(_books[id], position,rotation,timeInSec));
+    }
+    public IEnumerator RespawnPropCoroutine(Collectible prop, Vector3 position, Quaternion rotation, int timeInSec)
+    {
+        yield return new WaitForSeconds(timeInSec);
+        Instantiate(prop, position, rotation);
     }
 }

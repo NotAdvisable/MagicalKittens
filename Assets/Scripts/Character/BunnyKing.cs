@@ -30,7 +30,6 @@ public class BunnyKing : NetworkCharacter {
     }
     public override void Die()
     {
-        Debug.LogError("I DIED");
         _anim.SetTrigger("Die");
     }
 }

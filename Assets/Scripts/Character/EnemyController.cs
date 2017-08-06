@@ -25,9 +25,11 @@ public class EnemyController : NetworkCharacter {
     public override void Hit(float dmg)
     {
         _anim.SetTrigger("Hit");
+        base.Hit(dmg);
     }
     public override void Die()
     {
+        GetComponent<AIController>().TurnOffFSM();
         _anim.SetTrigger("Die");
         _agent.speed = 0;
     }

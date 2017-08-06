@@ -5,23 +5,53 @@ using UnityEngine;
 
 public class EnemyHunt : IFSMState<AIController>
 {
+    private Transform _target;
+
+    public EnemyHunt(ref Transform target)
+    {
+        _target = target;
+
+    }
+
     public void Enter(AIController entity)
     {
-        throw new NotImplementedException();
+        entity.Agent.SetDestination(_target.position);
+        entity.Agent.speed = entity.RunSpeed;
     }
 
     public void Exit(AIController entity)
     {
-        throw new NotImplementedException();
     }
 
     public void Reason(AIController entity)
     {
-        throw new NotImplementedException();
+        if (entity.Behaviour != AIController.AIBehaviour.Kamikaze) //Kamikaze hunt you relentlessly
+        {
+            var firstWithinDitance = entity.Controller.FindAnyPlayerWithinDistance(entity.SearchRadius);
+            if (firstWithinDitance == null)
+            {
+                if (entity.Behaviour == AIController.AIBehaviour.Patrol)
+                {
+                    entity.ChangeState(new EnemyPatrol());
+                }
+                else if (entity.Behaviour == AIController.AIBehaviour.Guard)
+                {
+                    entity.ChangeState(new EnemyGuard());
+                }
+            }
+
+        }
     }
 
     public void Update(AIController entity)
     {
-        throw new NotImplementedException();
+        var closest = entity.Controller.FindClosestPlayerWithinDistance(entity.SearchRadius);
+        if (_target != closest) _target = closest;
+
+        if (entity.Agent.destination != _target.transform.position)
+        {
+            entity.Agent.SetDestination(_target.position);
+        }
+        entity.Controller.SetAnimMoving(entity.Agent.velocity.magnitude / entity.Agent.speed);
     }
 }

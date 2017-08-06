@@ -22,7 +22,7 @@ namespace MirzaBeig
             // =================================	
             // Classes.
             // =================================
-
+            #pragma warning disable 109
             [RequireComponent(typeof(ParticleSystem))]
             public class ParticleFlocking : MonoBehaviour
             {

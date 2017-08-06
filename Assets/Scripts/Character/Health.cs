@@ -10,32 +10,40 @@ public class Health : NetworkBehaviour {
     [SerializeField] [Range(0, 4000)] private float _maxHealth = 150;
 
     [SyncVar(hook = "CheckIfAlive")] private float _currentHealth;
+
+    private bool _alreadyDead;
+
     private NetworkCharacter _owner;
-	// Use this for initialization
+
 	void Start () {
         _currentHealth = _maxHealth;
         _owner = GetComponent<NetworkCharacter>();
 	}
-	
-	// Update is called once per frame
+
 	void Update () {
 		
 	}
     private void CheckIfAlive(float health)
     {
-        Debug.Log(health);
         if (health <= 0 && _owner != null)
         {
             _owner.Die();
+            _alreadyDead = true;
         }
 
     }
     
     public void InflictDamage(float dmg)
     {
-        if (isServer)
+        if (isServer && !_alreadyDead)
         {
             _currentHealth -= dmg;
         }
+    }
+
+    public void Respawn()
+    {
+        _alreadyDead = false;
+        _currentHealth = _maxHealth;
     }
 }

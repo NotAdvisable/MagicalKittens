@@ -25,6 +25,7 @@ namespace MirzaBeig
 
             //[ExecuteInEditMode]
             [System.Serializable]
+            #pragma warning disable 109,108
 
             public class ParticleAffectorMT : MonoBehaviour
             {

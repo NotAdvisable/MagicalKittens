@@ -20,7 +20,7 @@ namespace MirzaBeig
         // =================================
         
         [RequireComponent(typeof(Light))]
-
+        #pragma warning disable 109, 108
         public class AnimatedLight : MonoBehaviour
         {
             // =================================	
