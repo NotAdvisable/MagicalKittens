@@ -30,19 +30,20 @@ Key features:
 
  ### Enemies
 
-*Patrol:* These enemies patrol between multiple points and start chasing any player that enters it's field of view.  
+**Patrol:** These enemies patrol between multiple points and start chasing any player that enters it's field of view.  
 A patrol Enemy keeps chasing the player until they're out of side or another player is closer.
 
-*Kamikaze:* Kamikaze enemies have a bigger field of view. **(Most likely because of the adrenaline)**   
+**Kamikaze:** Kamikaze enemies have a bigger field of view. *(Most likely because of the adrenaline)*  
 When they find you, they'll chase you relentlessly. Once they get to you they'll blow themselves up and inflict massive damage.
 
-*Guard:* They guard a single position and will only chase you for up to 3 seconds until they return to their post. These enemies are bulkier,
+**Guard:** They guard a single position and will only chase you for up to 3 seconds until they return to their post. These enemies are bulkier,
 have the most health, and field of view to compensate for their limited movements.
 
-*Mage:* The only type of bunny capable of ranged attacks. They shoot any of the first 4 spells at you. Since they don't have to guard anything,
+**Mage:** The only type of bunny capable of ranged attacks. They shoot any of the first 4 spells at you. Since they don't have to guard anything,
 they'll wait at the position they lost you and scan the area.
 
-*King:* The bunny king himself. He is 6 times bigger than his subjects and has unique ground attacks. **the rest you must find out yourself**
+**King:** The bunny king himself. He is 6 times bigger than his subjects and has unique ground attacks.  
+*the rest you must find out yourself*
 
 | Colour         	| Behaviour 	| Health  	| FIeld of view  |  Search Radius 	| Speed (walk/run)	| Damage per hit	|
 |---	            |---	   		|---	    |---	         |---	            |---				| ---				|
@@ -55,10 +56,13 @@ they'll wait at the position they lost you and scan the area.
  ---
  ### Controls
  
- * WASD to move
- * Spacebar
- *
- *
+ <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> move <kbd>Space</kbd> jump  
+ <kbd>Left Mouse</kbd> shoot in facing direction  
+ 
+ additionally:  
+ <kbd>ESC</kbd> open the menu ingame  
+ <kbd>TAB</kbd> toggle screen names
+ 
  ---
  ### How to setup
  
