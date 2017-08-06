@@ -1,7 +1,6 @@
 # Magical Kittens
-aka: Magical Kittens vs The fluffle of Darkness
+aka: Magical Kittens vs The fluffle of Darkness  
 
-### Introduction
 This is a student project for the Game Development 2 class at H-Da.  
 You and up to 3 of your friends play as kittens and shoot down evil bunnies.
 
@@ -14,8 +13,9 @@ Key features:
  * 5 different bunnies and 4 different AI types (Guard, Patrol, Kamikaze, Mage)
  * Custom AI Editor incl. field of view visualisation
  * Screen shake and camera use through cinemachine
-  
- ### Spells
+
+
+ ## Spells
  
  There are 5 different spells you can learn by picking up the fitting spellbook.  
  *Note: You can only have one spell at a time*  
@@ -28,7 +28,8 @@ Key features:
 | *Water*		    |  150	    	|  40     	| 
 | ***Ultima***	    |  300	        |  50		| 
 
- ### Enemies
+
+ ## Enemies
 
 **Patrol:** These enemies patrol between multiple points and start chasing any player that enters it's field of view.  
 A patrol Enemy keeps chasing the player until they're out of side or another player is closer.
@@ -53,8 +54,8 @@ they'll wait at the position they lost you and scan the area.
 |  *Blue*	        |  Mage	    	|  200    	|  150           |   30             | 6/12 				|   50-150			|
 |  **King** 	    |  ?        	|  3000     |   ?  	         |   ?	            | ?					|	?				|
 
- ---
- ### Controls
+
+ ## Controls
  
  <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> move <kbd>Space</kbd> jump  
  <kbd>Left Mouse</kbd> shoot in facing direction  
@@ -63,8 +64,8 @@ they'll wait at the position they lost you and scan the area.
  <kbd>ESC</kbd> open the menu ingame  
  <kbd>TAB</kbd> toggle screen names
  
- ---
- ### How to setup
+ 
+ ## How to setup
  
  - clone the repository  
  - open it as a Unity project  
