@@ -1,7 +1,9 @@
 # Magical Kittens
 aka: Magical Kittens vs The fluffle of Darkness  
 
-This is a student project for the Game Development 2 class at H-Da.  
+
+This game project was made with the Unity Engine for the Game Development 2 course at H-Da.  
+
 You and up to 3 of your friends play as kittens and shoot down evil bunnies.
 
 Key features:
@@ -44,6 +46,7 @@ have the most health, and field of view to compensate for their limited movement
 they'll wait at the position they lost you and scan the area.
 
 **King:** The bunny king himself. He is 6 times bigger than his subjects and has unique ground attacks.  
+
 *the rest you must find out yourself*
 
 | Colour         	| Behaviour 	| Health  	| FIeld of view  |  Search Radius 	| Speed (walk/run)	| Damage per hit	|
