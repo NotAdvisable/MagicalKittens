@@ -75,6 +75,8 @@ public class EnemyController : NetworkCharacter {
         GetComponent<AIController>().TurnOffFSM();
         _anim.SetTrigger("Die");
         _agent.speed = 0;
+        GetComponent<Rigidbody>().isKinematic = true;
+        GetComponent<NetworkTransform>().enabled = false;
     }
     public void SetAnimMoving(float value)
     {

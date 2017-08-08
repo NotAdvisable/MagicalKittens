@@ -72,7 +72,6 @@ public class CustomHUD : MonoBehaviour {
     }
 
     public void SetReady(bool value) {
-        //FindLocalCat();
         _localCat.Dancing(value);
         _localCat.GetComponent<NetworkLobbyPlayer>().SendReadyToBeginMessage();
     }

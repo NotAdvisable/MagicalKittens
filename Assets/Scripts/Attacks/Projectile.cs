@@ -14,6 +14,7 @@ public class Projectile : MonoBehaviour
     private Rigidbody _rb;
     void Start()
     {
+        GetComponent<AudioSource>().pitch = 1 + UnityEngine.Random.Range(-.5f, .5f);
         _rb = GetComponent<Rigidbody>();
         _rb.AddForce(transform.forward * _initialSpeed,ForceMode.VelocityChange);
         Destroy(gameObject, _maxLifeTime);
@@ -25,7 +26,8 @@ public class Projectile : MonoBehaviour
        var hit = other.GetComponent<IHitable>();
        if (hit != null) hit.Hit(_damage);
         _rb.velocity = Vector3.zero;
-       // _rb.AddForce(Vector3.zero, ForceMode.VelocityChange);
+        // _rb.AddForce(Vector3.zero, ForceMode.VelocityChange);
+
        Instantiate(_effect, transform.position, Quaternion.identity);
 
     }

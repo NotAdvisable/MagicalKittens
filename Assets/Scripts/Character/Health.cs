@@ -20,9 +20,6 @@ public class Health : NetworkBehaviour {
         _owner = GetComponent<NetworkCharacter>();
 	}
 
-	void Update () {
-		
-	}
     private void CheckIfAlive(float health)
     {
         if (health <= 0 && _owner != null)
@@ -30,7 +27,6 @@ public class Health : NetworkBehaviour {
             _owner.Die();
             _alreadyDead = true;
         }
-
     }
     
     public void InflictDamage(float dmg)

@@ -7,6 +7,7 @@ using UnityEngine.Networking;
 public class NetworkCharacter : NetworkBehaviour, IHitable {
 
     [SerializeField] private GameObject _landingEffect;
+    [SerializeField] private AudioClip _landingSound;
     protected Animator _anim;
     protected Health _health;
 
