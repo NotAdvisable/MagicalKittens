@@ -9,7 +9,7 @@ public class BunnyKing : NetworkCharacter {
     protected override void Start()
     {
         base.Start();
-
+        EventController.Singleton.OnActivateBossEvent += ActivateBoss;
     }
 
     public void ActivateBoss()
@@ -32,5 +32,9 @@ public class BunnyKing : NetworkCharacter {
     {
         EventController.Singleton.BossDied();
         _anim.SetTrigger("Die");
+    }
+    private void OnDestroy()
+    {
+        EventController.Singleton.OnActivateBossEvent -= ActivateBoss;
     }
 }

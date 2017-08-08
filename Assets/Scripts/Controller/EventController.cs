@@ -9,6 +9,7 @@ public class EventController : MonoBehaviour {
 
     public static EventController Singleton { get { return _instance; } }
 
+    public event Action OnActivateBossEvent;
     public event Action ScreenShakeEvent;
     public event Action EnemyDiedEvent;
     public event Action BossDiedEvent;
@@ -23,6 +24,13 @@ public class EventController : MonoBehaviour {
             _instance = this;
         }
         DontDestroyOnLoad(this);
+    }
+    public void ActivateBoss()
+    {
+        if (OnActivateBossEvent != null)
+        {
+            OnActivateBossEvent();
+        }
     }
     public void EnemyDied()
     {
