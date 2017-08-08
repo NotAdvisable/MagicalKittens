@@ -157,7 +157,10 @@ public class CatController : NetworkCharacter
     {
         _anim.SetBool("Dance", value);
     }
-
+    public override void Hit(float dmg)
+    {
+        base.Hit(dmg);
+    }
     public void SpawnProjectile() {
         if (_cooldownComplete) {
             StartCoroutine(ShootCoolDown());
