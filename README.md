@@ -6,26 +6,34 @@ This game project was made with the Unity Engine for the Game Development 2 cour
 
 You and up to 3 of your friends play as kittens and shoot down evil bunnies.
 
-Key features:
+### Key features
 
  * 2.5D Shmup (specifically a Run and gun based on classic arcade games like Contra and Metal Slug) 
  * LAN Multiplayer for up to 4 Players
- * Custom Lobby where you can choose from 4 different cats and enter a display name
+ * 4 choosable cat skins
  * 6 different spells set up using the Ultimate VFX library
- * 5 different enemies and 4 different AI types (Guard, Patrol, Kamikaze, Mage)
- * Custom AI Editor incl. field of view visualisation
- * Screen shake and camera use through cinemachine
- * Adorable kittens and bunnies
+ * 5 different enemies and 4 different AI classes (Guard, Patrol, Kamikaze, Mage)
  * A couple of easter eggs i included when i didn't really want to work on the serious stuff
+ * Adorable kittens and bunnies
+ 
+### Fancy coding stuff
+ 
+ * Linq integration
+ * Extention methods
+ * Finite State Machine for the Bunny AI
+ * A ton of inheritance
+ * Bunny King is controlled with coroutine sequences 
+ * Custom AI Editor incl. field of view visualisation
+ * Custom Lobby where you can choose from 4 different cats and enter a display name
  
  ## Controls
  
- <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> move <kbd>Space</kbd> jump  
- <kbd>Left Mouse</kbd> shoot in facing direction  
+ <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd>  Move <kbd>Shift</kbd>  Run <kbd>Space</kbd>  Jump  
+ <kbd>Left Mouse</kbd>  Shoot in facing direction  
  
  additionally:  
- <kbd>ESC</kbd> open the menu ingame  
- <kbd>TAB</kbd> toggle screen names
+ <kbd>ESC</kbd>  Open the menu ingame  
+ <kbd>TAB</kbd>  Toggle screen names
 
  ## Spells
  
@@ -43,7 +51,7 @@ Key features:
 
  ## Enemies
 
-### Behaviours
+### Classes and their behaviours
 **Patrol:** These enemies patrol between multiple points and start chasing any player that enters it's field of view.  
 A patrol Enemy keeps chasing the player until they're out of side or another player is closer.
 
@@ -76,8 +84,8 @@ they'll wait at the position they lost you and scan the area.
  - open it as a Unity project  
  - build the game  
  - play the build
- - enjoy  
- 
+ - enjoy 
+  
  ## Sources
  ### Used Assets
  
