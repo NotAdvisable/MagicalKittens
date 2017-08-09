@@ -1,5 +1,5 @@
 # Magical Kittens
-aka: Magical Kittens vs The fluffle of Darkness  
+aka: Magical Kittens: The fluffle of Darkness  
 
 
 This game project was made with the Unity Engine for the Game Development 2 course at H-Da.  
@@ -11,11 +11,21 @@ Key features:
  * 2.5D Shmup (specifically a Run and gun based on classic arcade games like Contra and Metal Slug) 
  * LAN Multiplayer for up to 4 Players
  * Custom Lobby where you can choose from 4 different cats and enter a display name
- * 6 different skills
+ * 6 different spells set up using the Ultimate VFX library
  * 5 different enemies and 4 different AI types (Guard, Patrol, Kamikaze, Mage)
  * Custom AI Editor incl. field of view visualisation
  * Screen shake and camera use through cinemachine
- * adorable kittens and bunnies
+ * Adorable kittens and bunnies
+ * A couple of easter eggs i included when i didn't really want to work on the serious stuff
+ 
+ ## Controls
+ 
+ <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> move <kbd>Space</kbd> jump  
+ <kbd>Left Mouse</kbd> shoot in facing direction  
+ 
+ additionally:  
+ <kbd>ESC</kbd> open the menu ingame  
+ <kbd>TAB</kbd> toggle screen names
 
  ## Spells
  
@@ -33,6 +43,7 @@ Key features:
 
  ## Enemies
 
+### Behaviours
 **Patrol:** These enemies patrol between multiple points and start chasing any player that enters it's field of view.  
 A patrol Enemy keeps chasing the player until they're out of side or another player is closer.
 
@@ -49,6 +60,8 @@ they'll wait at the position they lost you and scan the area.
 
 *the rest you must find out yourself*
 
+### Stats
+
 | Colour         	| Behaviour 	| Health  	| FIeld of view  |  Search Radius 	| Speed (walk/run)	| Damage per hit	|
 |---	            |---	   		|---	    |---	         |---	            |---				| ---				|
 |  *Black*			|  Patrol	    |  150 	    |  110           |   30	            | 6/12				|	75				|
@@ -57,17 +70,6 @@ they'll wait at the position they lost you and scan the area.
 |  *Blue*	        |  Mage	    	|  200    	|  150           |   30             | 6/12 				|   50-150			|
 |  **King** 	    |  ?        	|  3000     |   ?  	         |   ?	            | ?					|	?				|
 
-
- ## Controls
- 
- <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> move <kbd>Space</kbd> jump  
- <kbd>Left Mouse</kbd> shoot in facing direction  
- 
- additionally:  
- <kbd>ESC</kbd> open the menu ingame  
- <kbd>TAB</kbd> toggle screen names
- 
- 
  ## How to setup
  
  - clone the repository  
@@ -76,4 +78,24 @@ they'll wait at the position they lost you and scan the area.
  - play the build
  - enjoy  
  
+ ## Sources
+ ### Used Assets
  
+* **Cinemachine** - *Unity Technologies*
+* **Post Processing Stack** - *Unity Technologies*
+* **Cute Cats** - *DarkPurple Lion*
+* **Forest Bunny** - *MeshTint*
+* **Fantasy Environment** - *BRAiNBOX*
+* **Ultimate VFX (v2.7)** - *Mirza Beig*
+* **Universal Sound FX** - *Imphenzia*
+* **Toon Loot and Props Pack** - *MeshTint*
+ 
+ ### Background Music
+ 
+ * Bring on the Super Ability - Kirby's Return to Dream Land
+ * Fight On! - Final Fantasy VII
+ * Victory Fanfare - Final Fantasy VII
+ 
+ ### Additional
+ 
+ Special Thanks to Daniel Schellhaas for modelling the King's Crown
