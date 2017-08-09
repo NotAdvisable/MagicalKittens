@@ -24,16 +24,13 @@ public class NetworkCharacter : NetworkBehaviour, IHitable {
     public virtual void Land() {
         if (_landingEffect != null) Instantiate(_landingEffect, transform.position + Vector3.up,Quaternion.identity);
     }
-    public virtual void Hit(float dmg) {
+    public virtual void Hit(float dmg, GameObject aggressor) {
 
         _health.InflictDamage(dmg);
         StartCoroutine(FlashHit());
-        Debug.Log("HIT");
     }
 
     public virtual void Die() { }
-
-    public virtual void Decay() { }
 
     public virtual Transform FindAnyPlayerWithinDistance(float distance)
     {

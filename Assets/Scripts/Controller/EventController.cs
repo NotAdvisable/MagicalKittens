@@ -9,10 +9,8 @@ public class EventController : MonoBehaviour {
 
     public static EventController Singleton { get { return _instance; } }
 
-    public event Action OnActivateBossEvent;
-    public event Action ScreenShakeEvent;
-    public event Action EnemyDiedEvent;
-    public event Action BossDiedEvent;
+    public event Action OnActivateBossEvent, OnLeaveBossEvent, OnScreenShakeEvent, OnEnemyDiedEvent, OnBossDiedEvent;
+
 
     private void Awake() {
         if (_instance != null && _instance != this)
@@ -32,23 +30,30 @@ public class EventController : MonoBehaviour {
             OnActivateBossEvent();
         }
     }
+    public void LeaveBoss()
+    {
+        if (OnLeaveBossEvent != null)
+        {
+            OnLeaveBossEvent();
+        }
+    }
     public void EnemyDied()
     {
-        if (EnemyDiedEvent != null)
+        if (OnEnemyDiedEvent != null)
         {
-            EnemyDiedEvent();
+            OnEnemyDiedEvent();
         }
     }
     public void BossDied()
     {
-        if(BossDiedEvent != null)
+        if(OnBossDiedEvent != null)
         {
-            BossDiedEvent();
+            OnBossDiedEvent();
         }
     }
     public void ScreenShake() {
-        if(ScreenShakeEvent != null) {
-            ScreenShakeEvent();
+        if(OnScreenShakeEvent != null) {
+            OnScreenShakeEvent();
         }
     }
 }

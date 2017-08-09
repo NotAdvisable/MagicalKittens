@@ -157,9 +157,16 @@ public class CatController : NetworkCharacter
     {
         _anim.SetBool("Dance", value);
     }
-    public override void Hit(float dmg)
+    public override void Hit(float dmg, GameObject aggressor)
     {
-        base.Hit(dmg);
+        base.Hit(dmg,null);
+    }
+    public override void Die()
+    {
+        var positions = FindObjectOfType<CustomLobbyManager>().startPositions;
+        transform.position = positions[UnityEngine.Random.Range(0, positions.Count)].position;
+        _health.Respawn();
+        if(isLocalPlayer) CameraController.Singleton.TurnOffBossCam();
     }
     public void SpawnProjectile() {
         if (_cooldownComplete) {

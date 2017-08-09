@@ -8,7 +8,7 @@ public class EnemyHunt : IFSMState<AIController>
     private Transform _target;
     private float _huntedFor;
 
-    public EnemyHunt(ref Transform target)
+    public EnemyHunt(Transform target)
     {
         _target = target;
 
@@ -62,6 +62,7 @@ public class EnemyHunt : IFSMState<AIController>
     {
         var closest = entity.Controller.FindClosestPlayerWithinDistance(entity.SearchRadius);
         if (_target != closest) _target = closest;
+        if (_target == null) return;
 
         if (entity.Agent.destination != _target.transform.position)
         {

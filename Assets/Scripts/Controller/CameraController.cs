@@ -35,7 +35,7 @@ public class CameraController : MonoBehaviour
         yield return null;
 
         _brain = Camera.main.GetComponent<CinemachineBrain>();
-        EventController.Singleton.ScreenShakeEvent += ShakeScreen;
+        EventController.Singleton.OnScreenShakeEvent += ShakeScreen;
 
         StartCoroutine(FindLocalPlayer());
     }
@@ -69,7 +69,14 @@ public class CameraController : MonoBehaviour
             yield return waitObject;
         }
     }
-
+    public void TurnOffBossCam()
+    {
+        _cams[1].normal.gameObject.SetActive(false);
+    }
+    public void TurnOnBossCam()
+    {
+        _cams[1].normal.gameObject.SetActive(true);
+    }
     public void SetFocus(Transform t)
     {
         if (t == null) return;
@@ -77,6 +84,6 @@ public class CameraController : MonoBehaviour
     }
     private void OnDestroy()
     {
-        EventController.Singleton.ScreenShakeEvent -= ShakeScreen;
+        EventController.Singleton.OnScreenShakeEvent -= ShakeScreen;
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using UnityEngine.AI;
+using System;
 
 public class AIController : StatefulMonoBehaviour<AIController> {
     public enum AIBehaviour
@@ -43,6 +44,7 @@ public class AIController : StatefulMonoBehaviour<AIController> {
     void Start()
     {
         _controller = GetComponent<EnemyController>();
+        _controller.OnHitEvent += EngageHunt;
         _agent = GetComponent<NavMeshAgent>();
 
         if (!_controller.isServer) {
@@ -92,9 +94,19 @@ public class AIController : StatefulMonoBehaviour<AIController> {
                 break;
         }
     }
-
+    private void EngageHunt(GameObject obj)
+    {
+        if (_controller.isServer)
+        {
+            ChangeState(new EnemyHunt(obj.transform));
+        }
+    }
     public void TurnOffFSM()
     {
         fsm = null;
+    }
+    private void OnDestroy()
+    {
+        _controller.OnHitEvent -= EngageHunt;
     }
 }

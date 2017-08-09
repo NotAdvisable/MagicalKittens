@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -21,6 +22,7 @@ public class EnemyController : NetworkCharacter {
     [SerializeField] private GameObject _selfDestructPrefab;
     [SerializeField] private float _attackCooldown = 3f;
     private Collider _hunted;
+    public event Action<GameObject> OnHitEvent;
 
     protected override void Start()
     {
@@ -34,20 +36,20 @@ public class EnemyController : NetworkCharacter {
     {
 
         StartCoroutine(AttackCooldown());
-        NetworkState.Singleton.RpcSpawnProjectile(Random.Range(0,4), _particleSpawner.position, transform.rotation, gameObject);
+        NetworkState.Singleton.RpcSpawnProjectile(UnityEngine.Random.Range(0,4), _particleSpawner.position, transform.rotation, gameObject);
         _anim.SetTrigger("Attack");
     }
     public void Attack()
     {
         StartCoroutine(AttackCooldown());
         _anim.SetTrigger("Attack");
-        //Instantiate(_hitPrefab, transform.position + Vector3.forward * 2, Quaternion.identity);
-        var targetHealth = _hunted.GetComponent<Health>();
-        if (targetHealth != null) targetHealth.InflictDamage(_meleeDamage);
+        var hit = _hunted.GetComponent<IHitable>();
+        if (hit != null) hit.Hit(_meleeDamage,gameObject);
     }
     public void SelfDestruct()
     {
         Attack();
+        NetworkState.Singleton.RpcSpawnProjectile(5, transform.position, transform.rotation, null);
         Instantiate(_selfDestructPrefab, transform.position, transform.rotation);
 
         var targetHealth = _hunted.GetComponent<Health>();
@@ -64,10 +66,11 @@ public class EnemyController : NetworkCharacter {
     }
 
     //passive
-    public override void Hit(float dmg)
+    public override void Hit(float dmg, GameObject aggressor)
     {
+        if (OnHitEvent != null) OnHitEvent(aggressor);
         _anim.SetTrigger("Hit");
-        base.Hit(dmg);
+        base.Hit(dmg,null);
     }
     public override void Die()
     {
@@ -77,6 +80,7 @@ public class EnemyController : NetworkCharacter {
         _agent.speed = 0;
         GetComponent<Rigidbody>().isKinematic = true;
         GetComponent<NetworkTransform>().enabled = false;
+        GetComponent<Collider>().enabled = false;
     }
     public void SetAnimMoving(float value)
     {

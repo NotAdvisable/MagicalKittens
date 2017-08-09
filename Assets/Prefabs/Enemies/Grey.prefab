@@ -485,8 +485,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1291265141477250}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 220, y: 165.0706, z: -272.01}
   m_LocalScale: {x: 4, y: 4, z: 4}
   m_Children:
   - {fileID: 4676913549772264}
@@ -504,7 +504,7 @@ Transform:
   - {fileID: 4769244069136298}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!4 &4356435289471772
 Transform:
   m_ObjectHideFlags: 1
@@ -839,13 +839,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _landingEffect: {fileID: 0}
+  _landingSound: {fileID: 0}
   _particleSpawner: {fileID: 4044349227777636}
   _meleeDamage: 100
   _kamiKazeDamage: 300
   _hitPrefab: {fileID: 1887035670224648, guid: 31e2d5f31ecad3947a6d211f40dd7ef0, type: 2}
   _selfDestructPrefab: {fileID: 1053610263970150, guid: a29b2a594ad5fe445be6144db07d4c61,
     type: 2}
-  _attackCooldown: 0
+  _attackCooldown: 3
 --- !u!114 &114579771486035110
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -942,7 +943,7 @@ SphereCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.29
-  m_Center: {x: 0, y: 0.24, z: 0}
+  m_Center: {x: 0, y: 0.29, z: 0}
 --- !u!135 &135696217082583136
 SphereCollider:
   m_ObjectHideFlags: 1

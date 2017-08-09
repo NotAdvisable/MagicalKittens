@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-[CustomEditor(typeof(AIController))]
+//[CustomEditor(typeof(AIController))]
 public class AIControllerEditor : Editor {
     public SerializedProperty
     _aiBehaviourProp, _searchRadiusProp, _fieldofViewProp, _walkSpeedProp, _runSpeedProp,

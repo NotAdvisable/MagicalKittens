@@ -17,7 +17,7 @@ public abstract class EnemySearch : IFSMState<AIController>
         var firstWithinDitance = entity.Controller.FindAnyPlayerWithinDistance(entity.SearchRadius);
         if (firstWithinDitance != null && entity.transform.WithinEulerAngle(firstWithinDitance, entity.FieldOfView))
         {
-            entity.ChangeState(new EnemyHunt(ref firstWithinDitance));
+            entity.ChangeState(new EnemyHunt(firstWithinDitance));
         }
     }
 

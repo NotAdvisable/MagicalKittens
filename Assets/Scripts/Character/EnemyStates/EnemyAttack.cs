@@ -27,7 +27,7 @@ public class EnemyAttack : IFSMState<AIController>
     {
         if (!entity.Controller.WithinAttackRange)
         {
-            entity.ChangeState(new EnemyHunt(ref _target));
+            entity.ChangeState(new EnemyHunt(_target));
         }
     }
 

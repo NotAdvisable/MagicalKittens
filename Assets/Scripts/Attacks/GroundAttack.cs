@@ -4,20 +4,16 @@ using UnityEngine;
 
 public class GroundAttack : MonoBehaviour {
 
-    [SerializeField] private float _damage;
+    [SerializeField] private float _damage = 200f;
 
 	void Start () {
         Destroy(gameObject, .8f);
     }
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-    private void OnParticleCollision(GameObject other)
+
+    private void OnTriggerEnter(Collider other)
     {
        if (!other.CompareTag("Player")) return;
        var hit = other.GetComponent<IHitable>();
-       if (hit != null) hit.Hit(_damage);
+       if (hit != null) hit.Hit(_damage,null);
     }
 }

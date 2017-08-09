@@ -83,8 +83,8 @@ public class NetworkState : NetworkBehaviour
     [ClientRpc]
     public void RpcSpawnProjectile(int id, Vector3 position, Quaternion rotation, GameObject shooter)
     {
-       var projectile = Instantiate(_projectiles[id], position, rotation);
-        projectile.GetComponent<Projectile>().SetShooter(shooter);
+       var projectile = Instantiate(_projectiles[id], position, rotation).GetComponent<Projectile>();
+       if(projectile != null) projectile.SetShooter(shooter);
     }
     public void RespawnProp(int id, Vector3 position, Quaternion rotation, int timeInSec)
     {

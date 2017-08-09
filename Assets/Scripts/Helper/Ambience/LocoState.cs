@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//Random idles; currently not in use
 public class LocoState : StateMachineBehaviour {
     [SerializeField] private float _minSecondsBetweenIdles = 3;
     [SerializeField] private float _maxSecondsBetweenIdles = 6;

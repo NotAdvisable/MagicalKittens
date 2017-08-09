@@ -88,6 +88,7 @@ public class CustomLobbyManager : NetworkLobbyManager
 
         CatController instance = Instantiate(selectedCatPrefab, spawnPoint.position, spawnPoint.rotation);
 
+        //Transfer the lobby name to the ingame cat
         instance._playerName = lobbyCat._playerName;
         return instance.gameObject;
     }

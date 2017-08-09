@@ -13,7 +13,7 @@ public class SpinCat : MonoBehaviour {
         _sound = FindObjectOfType<CatSound>();
         _renderer = GetComponentInChildren<SkinnedMeshRenderer>();
     }
-    void FixedUpdate () {
+    void Update () {
         if (_renderer.materials.Length == 0) return;
 
         if (Input.GetMouseButtonDown(0)) {

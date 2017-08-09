@@ -924,6 +924,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _landingEffect: {fileID: 0}
+  _landingSound: {fileID: 0}
   _particleSpawner: {fileID: 4139012760806390}
   _meleeDamage: 0
   _kamiKazeDamage: 300
@@ -942,7 +943,7 @@ SphereCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.29
-  m_Center: {x: 0, y: 0.24, z: 0}
+  m_Center: {x: 0, y: 0.29, z: 0}
 --- !u!135 &135766233929357242
 SphereCollider:
   m_ObjectHideFlags: 1
