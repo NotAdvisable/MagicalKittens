@@ -85,25 +85,7 @@ they'll wait at the position they lost you and scan the area.
  - build the game  
  - play the build
  - enjoy 
-  
- ## Sources
- ### Used Assets
  
-* **Cinemachine** - *Unity Technologies*
-* **Post Processing Stack** - *Unity Technologies*
-* **Cute Cats** - *DarkPurple Lion*
-* **Forest Bunny** - *MeshTint*
-* **Fantasy Environment** - *BRAiNBOX*
-* **Ultimate VFX (v2.7)** - *Mirza Beig*
-* **Universal Sound FX** - *Imphenzia*
-* **Toon Loot and Props Pack** - *MeshTint*
- 
- ### Background Music
- 
- * Bring on the Super Ability - Kirby's Return to Dream Land
- * Fight On! - Final Fantasy VII
- * Victory Fanfare - Final Fantasy VII
- 
- ### Additional
+ ## Additional notes
  
  Special Thanks to Daniel Schellhaas for modelling the King's Crown
