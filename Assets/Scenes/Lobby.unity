@@ -4875,7 +4875,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff26db721962cdf4a8edcdfa9a767d2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  profile: {fileID: 0}
+  profile: {fileID: 11400000, guid: 7276afb8611b76b409cc2e1692b4b461, type: 2}
 --- !u!1 &989251978
 GameObject:
   m_ObjectHideFlags: 0
@@ -10244,6 +10244,8 @@ MonoBehaviour:
   - {fileID: 1723546811470360, guid: 7a97480bf355aef4395866031c3a51a6, type: 2}
   - {fileID: 1298774768144864, guid: 6dbca76edc0c5f74eb7559f18ebc5131, type: 2}
   - {fileID: 1940568349587074, guid: 628901b6c896ed042848a8ebc92185a1, type: 2}
+  - {fileID: 1053247751097048, guid: 78f49d27fb2e8724ebebcf6d83726ca4, type: 2}
+  - {fileID: 1515740063567730, guid: 73b91226639441349b650500d331bc20, type: 2}
   m_CustomConfig: 0
   m_MaxConnections: 4
   m_ConnectionConfig:
@@ -11744,6 +11746,7 @@ Prefab:
     - {fileID: 114560402062840060, guid: c9427dd1629014c4ea6e918b26d8b57f, type: 2}
     - {fileID: 82570043230020808, guid: c9427dd1629014c4ea6e918b26d8b57f, type: 2}
     - {fileID: 114058049954410002, guid: c9427dd1629014c4ea6e918b26d8b57f, type: 2}
+    - {fileID: 114423167964884736, guid: c9427dd1629014c4ea6e918b26d8b57f, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: c9427dd1629014c4ea6e918b26d8b57f, type: 2}
   m_IsPrefabParent: 0
 --- !u!4 &1938971050 stripped

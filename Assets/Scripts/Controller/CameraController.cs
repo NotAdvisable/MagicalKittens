@@ -7,6 +7,9 @@ using System.Linq;
 public class CameraController : MonoBehaviour
 {
     public static CameraController Singleton { get; private set; }
+    /// <summary>
+    /// Groups the normal cam and shake cam together as a pair
+    /// </summary>
     [Serializable]
     private struct VirtualCamPair
     {
@@ -39,6 +42,9 @@ public class CameraController : MonoBehaviour
 
         StartCoroutine(FindLocalPlayer());
     }
+    /// <summary>
+    /// Toggles the Shake when the event is triggered
+    /// </summary>
     private void ShakeScreen()
     {
         var camPair = _cams.FirstOrDefault(pair => pair.normal == (UnityEngine.Object)_brain.ActiveVirtualCamera);
@@ -55,6 +61,10 @@ public class CameraController : MonoBehaviour
         pair.shake.gameObject.SetActive(false);
     }
 
+    /// <summary>
+    /// Finds the local player to focus on and follow at the start of the game
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator FindLocalPlayer()
     {
         WaitForSeconds waitObject = new WaitForSeconds(0.3f);

@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
+/// <summary>
+/// Handles the user input and updates the animator
+/// </summary>
 public class CatMovement : NetworkBehaviour {
 
     [SerializeField] private float _speed = 8;

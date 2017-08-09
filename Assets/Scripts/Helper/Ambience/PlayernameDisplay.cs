@@ -7,7 +7,7 @@ using UnityEngine;
 public class PlayernameDisplay : MonoBehaviour
 {
     public CatController Controller { get; set; }
-
+    public static bool _isEnabled = true;
     private MeshRenderer _renderer;
     private TextMesh _textMesh;
 
@@ -20,12 +20,17 @@ public class PlayernameDisplay : MonoBehaviour
 
     public void SetText(string text)
     {
-        _renderer.enabled = true;
+        _renderer.enabled = _isEnabled;
         _textMesh.text = text;
     }
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            _isEnabled = !_isEnabled;
+        }
+
         SetText(Controller.PlayerName);
         transform.LookAt(2 * transform.position - Camera.main.transform.position);
     }

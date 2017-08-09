@@ -1,9 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
+﻿using UnityEditor;
 using UnityEngine;
 
-//[CustomEditor(typeof(AIController))]
+[CustomEditor(typeof(AIController))]
 public class AIControllerEditor : Editor {
     public SerializedProperty
     _aiBehaviourProp, _searchRadiusProp, _fieldofViewProp, _walkSpeedProp, _runSpeedProp,
@@ -56,9 +54,9 @@ public class AIControllerEditor : Editor {
         serializedObject.ApplyModifiedProperties();
 
     }
-
     private void OnSceneGUI()
     {
+        //Calculates and visualises the field of view in a circle piece 
         AIController controller = (AIController)target;
         var controllerPos = controller.transform.position;
         var FOVstart = controller.transform.DirectionFromAngle(-controller.FieldOfView / 2);

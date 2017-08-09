@@ -5,7 +5,9 @@ using UnityEngine.UI;
 using UnityEngine.Networking;
 using System.Linq;
 
-
+/// <summary>
+/// Handles the UI in the lobby scene
+/// </summary>
 public class CustomHUD : MonoBehaviour {
 
     [SerializeField] private InputField _serverAdressInputField;

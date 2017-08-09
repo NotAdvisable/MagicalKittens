@@ -69,6 +69,7 @@ public class CatController : NetworkCharacter
 
         SceneManager.activeSceneChanged += OnSceneChanged;
         NetworkState.Singleton.AddPlayer(this);
+        if(EventController.Singleton != null)  EventController.Singleton.OnBossDiedEvent += DisableWhenBossKilled;
     }
 
     private void OnSceneChanged(Scene oldScene, Scene newScene)
@@ -149,6 +150,10 @@ public class CatController : NetworkCharacter
             }
         }
     }
+    private void DisableWhenBossKilled()
+    {
+        GetComponent<CatMovement>().enabled = false;
+    }
     public void SetSpellID(int id)
     {
         _currentProjectileID = id;
@@ -166,7 +171,11 @@ public class CatController : NetworkCharacter
         var positions = FindObjectOfType<CustomLobbyManager>().startPositions;
         transform.position = positions[UnityEngine.Random.Range(0, positions.Count)].position;
         _health.Respawn();
-        if(isLocalPlayer) CameraController.Singleton.TurnOffBossCam();
+        if (isLocalPlayer)
+        {
+            CameraController.Singleton.TurnOffBossCam();
+            FindObjectOfType<Bossfight>().ResetDirection();
+        }
     }
     public void SpawnProjectile() {
         if (_cooldownComplete) {

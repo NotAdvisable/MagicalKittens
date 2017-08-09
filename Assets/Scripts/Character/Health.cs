@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Networking;
-
-[RequireComponent(typeof(NetworkCharacter))]
+[RequireComponent (typeof(NetworkCharacter))]
 public class Health : NetworkBehaviour {
 
     [SerializeField] [Range(0, 4000)] private float _maxHealth = 150;
@@ -12,6 +8,7 @@ public class Health : NetworkBehaviour {
     [SyncVar(hook = "CheckIfAlive")] private float _currentHealth;
 
     private bool _alreadyDead;
+    public bool AlreadyDead { get { return _alreadyDead; } }
 
     private NetworkCharacter _owner;
 

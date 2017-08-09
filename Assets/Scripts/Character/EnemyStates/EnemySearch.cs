@@ -3,6 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Base class for states that check if a player is within their field of view
+/// </summary>
 public abstract class EnemySearch : IFSMState<AIController>
 {
     public virtual void Enter(AIController entity)

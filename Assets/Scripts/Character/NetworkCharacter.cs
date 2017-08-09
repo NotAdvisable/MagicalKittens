@@ -1,10 +1,11 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.Networking;
-
+/// <summary>
+/// Class that summarizes all characters in the scene to make them easier to handle
+/// </summary>
 [RequireComponent(typeof(Animator))]
-[RequireComponent(typeof(Health))]
-
+[RequireComponent (typeof(Health))]
 public class NetworkCharacter : NetworkBehaviour, IHitable {
 
     [SerializeField] private GameObject _landingEffect;
@@ -41,6 +42,9 @@ public class NetworkCharacter : NetworkBehaviour, IHitable {
         return transform.ClosestTransformWithinDistance(NetworkState.Singleton.GetPlayerTransform(), distance);
     }
     
+    /// <summary>
+    /// Makes the character's material flash white when hit
+    /// </summary>
     private IEnumerator FlashHit()
     {
         _renderer.material.SetColor("_EmissionColor", Color.white);

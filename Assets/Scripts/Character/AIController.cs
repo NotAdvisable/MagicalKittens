@@ -60,11 +60,17 @@ public class AIController : StatefulMonoBehaviour<AIController> {
 
         base.Update();
     }
+
+    //gives the server a bit of time
     private IEnumerator WaitUntilServerReady()
     {
         yield return new WaitForSeconds(2);
         Initialise();
     }
+
+    /// <summary>
+    /// Initialises the behaviour based on the class
+    /// </summary>
     private void Initialise()
     {
         switch (_aiBehaviour)
@@ -94,6 +100,8 @@ public class AIController : StatefulMonoBehaviour<AIController> {
                 break;
         }
     }
+    ///<summary>This method activates the hunt state when the player hits this enemy
+    ///to assure that the enemy doesn't ignore being shot in the back of the head</summary>
     private void EngageHunt(GameObject obj)
     {
         if (_controller.isServer)
@@ -101,6 +109,7 @@ public class AIController : StatefulMonoBehaviour<AIController> {
             ChangeState(new EnemyHunt(obj.transform));
         }
     }
+
     public void TurnOffFSM()
     {
         fsm = null;

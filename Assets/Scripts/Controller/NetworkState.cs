@@ -5,6 +5,9 @@ using UnityEngine;
 using UnityEngine.Networking;
 using System.Linq;
 
+/// <summary>
+/// keeps track of the players and spawns projectiles 
+/// </summary>
 public class NetworkState : NetworkBehaviour
 {
     private List<CatController> _currentPlayers = new List<CatController>();

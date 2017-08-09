@@ -148,7 +148,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 20, y: 0.1, z: 20}
+  m_Size: {x: 26, y: 0.1, z: 26}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!82 &82369524879864988
 AudioSource:
@@ -312,7 +312,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 589879225
+  randomSeed: 2061847787
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -3543,7 +3543,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 943099856
+  randomSeed: -2060626517
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -6774,7 +6774,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 52179051
+  randomSeed: 880193979
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -10036,7 +10036,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1329666524
+  randomSeed: -2030470685
   InitialModule:
     serializedVersion: 3
     enabled: 1

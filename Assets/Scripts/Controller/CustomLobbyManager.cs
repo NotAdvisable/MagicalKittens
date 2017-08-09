@@ -1,10 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
-using UnityEngine.SceneManagement;
 
+/// <summary>
+/// Custom Lobby with Character and name select
+/// </summary>
 public class CustomLobbyManager : NetworkLobbyManager
 {
     [SerializeField]

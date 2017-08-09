@@ -4,7 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Networking;
-
+/// <summary>
+/// methods and values that define the enemy's strength and what happens when it attacks and dies
+/// </summary>
 public class EnemyController : NetworkCharacter {
 
     private NavMeshAgent _agent;
