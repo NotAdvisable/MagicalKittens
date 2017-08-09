@@ -1229,7 +1229,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10100, guid: 0000000000000000e000000000000000, type: 0}
+  - {fileID: 2100000, guid: ab3a19f8208f38e4980fab9a70db75ba, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1375,9 +1375,9 @@ TextMesh:
   m_Alignment: 1
   m_TabSize: 4
   m_FontSize: 131
-  m_FontStyle: 1
+  m_FontStyle: 0
   m_RichText: 1
-  m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Font: {fileID: 12800000, guid: ab3a19f8208f38e4980fab9a70db75ba, type: 3}
   m_Color:
     serializedVersion: 2
     rgba: 4294967295
@@ -1460,6 +1460,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _landingEffect: {fileID: 0}
+  _landingSound: {fileID: 0}
   _particleSpawnPosition: {fileID: 4398617957571104}
   _currentProjectileID: 0
   _playerNameDisplay: {fileID: 114478721440096782}
